@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+html {
+  scroll-behavior: smooth;
+  background: #000;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Selection */
+::selection {
+  background: rgba(6,182,212,0.25);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #1A1A1A; border-radius: 2px; }
+
+/* ─── Typography utilities ──────────────────────────────── */
+
+/* Display size — responsive giant headline */
+.text-display {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+
+.text-display-md {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+
+.text-display-sm {
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+/* Label / eyebrow */
+.text-label {
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+/* ─── Section spacing ───────────────────────────────────── */
+.section-pad { padding-top: clamp(5rem, 10vw, 9rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
+.section-pad-lg { padding-top: clamp(7rem, 14vw, 12rem); padding-bottom: clamp(7rem, 14vw, 12rem); }
+
+/* ─── Visual utilities ──────────────────────────────────── */
+
+/* Grid pattern — barely visible */
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Hairline divider */
+.hr { height: 1px; background: #1A1A1A; }
+.hr-fade { height: 1px; background: linear-gradient(90deg, transparent, #1A1A1A 20%, #1A1A1A 80%, transparent); }
+
+/* Glass — pure dark */
+.glass {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Accent glow text */
+.text-accent { color: #06B6D4; }
+
+/* Gradient text white→cyan */
+.gradient-text {
+  background: linear-gradient(135deg, #fff 30%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Apple-style word reveal ───────────────────────────── */
+.reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(4px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+              transform 0.7s cubic-bezier(0.16,1,0.3,1),
+              filter 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-word.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ─── Sticky section helper ─────────────────────────────── */
+.sticky-panel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── WhatsApp notification bubble ─────────────────────── */
+.notif-bubble {
+  background: #1C1C1E;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── Typing dots ───────────────────────────────────────── */
+@keyframes dot-blink {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+.dot-1 { animation: dot-blink 1.4s infinite 0s; }
+.dot-2 { animation: dot-blink 1.4s infinite 0.2s; }
+.dot-3 { animation: dot-blink 1.4s infinite 0.4s; }
+
+/* ─── Price count animation ─────────────────────────────── */
+@keyframes count-up {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
+
+/* ─── Noise overlay ─────────────────────────────────────── */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}

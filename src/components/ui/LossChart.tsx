@@ -3,8 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-
-const E = [0.16, 1, 0.3, 1] as const;
+import { E } from "@/lib/animations";
 
 const DATA = [
   { m:"Ene", v:100 }, { m:"Feb", v:101.5 }, { m:"Mar", v:103.2 },

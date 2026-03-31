@@ -1,27 +1,33 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import PasSection from "@/components/PasSection";
-import ModulesSection from "@/components/ModulesSection";
-import WhatsappMockup from "@/components/WhatsappMockup";
-import LossChart from "@/components/LossChart";
-import FeaturesGrid from "@/components/FeaturesGrid";
-import Results from "@/components/Results";
-import Pricing from "@/components/Pricing";
-import FinalCta from "@/components/FinalCta";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import PasSection from "@/components/sections/PasSection";
+import TrailerSection from "@/components/sections/TrailerSection";
+import ScenariosSection from "@/components/sections/ScenariosSection";
+import ModulesSection from "@/components/sections/ModulesSection";
+import OrbitalModules from "@/components/sections/OrbitalModules";
+import FeaturesGrid from "@/components/sections/FeaturesGrid";
+import Results from "@/components/sections/Results";
+import MetricsSection from "@/components/sections/MetricsSection";
+import Pricing from "@/components/sections/Pricing";
+import FaqSection from "@/components/sections/FaqSection";
+import FinalCta from "@/components/sections/FinalCta";
 
 export default function Home() {
   return (
-    <main className="bg-brand-navy min-h-screen">
+    <main className="bg-vi-bg min-h-screen">
       <Navbar />
       <Hero />
       <PasSection />
+      <TrailerSection />
+      <ScenariosSection />
       <ModulesSection />
-      <WhatsappMockup />
-      <LossChart />
+      <OrbitalModules />
       <FeaturesGrid />
       <Results />
+      <MetricsSection />
       <Pricing />
+      <FaqSection />
       <FinalCta />
       <Footer />
     </main>

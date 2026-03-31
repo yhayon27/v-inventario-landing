@@ -2,15 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-
-const ease = [0.16, 1, 0.3, 1] as const;
-
-interface Message {
-  id: number;
-  from: "user" | "ai";
-  text: string;
-  delay: number;
-}
+import { E } from "@/lib/animations";
+import { Message } from "@/types";
 
 const conversation: Message[] = [
   { id: 1, from: "user", text: "¿Cuánto vendimos hoy?", delay: 0 },
@@ -65,8 +58,8 @@ export default function WhatsappMockup() {
   }, [visible, typing]);
 
   return (
-    <section className="py-section relative overflow-hidden" id="whatsapp">
-      <div className="divider absolute top-0 left-0 right-0" />
+    <section className="section-pad relative overflow-hidden" id="whatsapp">
+      <div className="hr absolute top-0 left-0 right-0" />
 
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -75,16 +68,16 @@ export default function WhatsappMockup() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease }}
+            transition={{ duration: 0.6, ease: E }}
           >
-            <p className="text-xs font-medium text-brand-secondary tracking-widest uppercase mb-4">WhatsApp IA</p>
+            <p className="text-xs font-medium text-brand-muted tracking-widest uppercase mb-4">WhatsApp IA</p>
             <h2
               className="font-black text-white leading-[1.05] tracking-tight mb-6"
               style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "-0.03em" }}
             >
               Tu negocio entero en tu WhatsApp
             </h2>
-            <p className="text-brand-secondary leading-relaxed mb-8" style={{ fontWeight: 300 }}>
+            <p className="text-brand-muted leading-relaxed mb-8" style={{ fontWeight: 300 }}>
               Habla con tu negocio en español normal. Ventas, inventario, fiados, tasa BCV —
               respuestas instantáneas desde donde estés, a cualquier hora.
             </p>
@@ -99,7 +92,7 @@ export default function WhatsappMockup() {
                   <span className="w-1 h-1 rounded-full bg-brand-accent flex-shrink-0 mt-2" />
                   <div>
                     <span className="text-sm text-white font-medium">"{item.q}"</span>
-                    <span className="text-sm text-brand-secondary ml-2" style={{ fontWeight: 300 }}>→ {item.a}</span>
+                    <span className="text-sm text-brand-muted ml-2" style={{ fontWeight: 300 }}>→ {item.a}</span>
                   </div>
                 </div>
               ))}
@@ -107,7 +100,7 @@ export default function WhatsappMockup() {
 
             <div className="flex items-center gap-2 mt-8">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-              <span className="text-sm text-brand-secondary" style={{ fontWeight: 300 }}>
+              <span className="text-sm text-brand-muted" style={{ fontWeight: 300 }}>
                 Disponible <span className="text-white font-medium">24 horas, 7 días a la semana</span>
               </span>
             </div>
@@ -119,7 +112,7 @@ export default function WhatsappMockup() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, ease }}
+            transition={{ duration: 0.8, ease: E }}
             className="flex justify-center"
           >
             <motion.div
@@ -192,7 +185,7 @@ export default function WhatsappMockup() {
                           key={msg.id}
                           initial={{ opacity: 0, y: 8, scale: 0.97 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ duration: 0.25, ease }}
+                          transition={{ duration: 0.25, ease: E }}
                           className={`flex mb-1.5 ${msg.from === "user" ? "justify-end" : "justify-start"}`}
                         >
                           <div
@@ -258,7 +251,7 @@ export default function WhatsappMockup() {
         </div>
       </div>
 
-      <div className="divider absolute bottom-0 left-0 right-0" />
+      <div className="hr absolute bottom-0 left-0 right-0" />
     </section>
   );
 }

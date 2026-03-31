@@ -1,161 +1,140 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Reset & Base ─────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; }
-
-html {
-  scroll-behavior: smooth;
-  background: #000;
+:root {
+  --bg: #09090b;
+  --g: #22c55e;
+  --gd: #0d1f13;
+  --gb: #163521;
+  --s1: #0d0d0f;
+  --s2: #111114;
+  --bd: #1c1c1f;
 }
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+html { scroll-behavior: smooth; background: var(--bg); }
+
 body {
-  background-color: #000000;
-  color: #ffffff;
-  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg);
+  color: #fff;
+  font-family: 'DM Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* Selection */
-::selection {
-  background: rgba(6,182,212,0.25);
-  color: #fff;
-}
-
-/* Scrollbar */
+::selection { background: rgba(34,197,94,0.25); color: #fff; }
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #1A1A1A; border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(34,197,94,0.3); border-radius: 2px; }
 
-/* ─── Typography utilities ──────────────────────────────── */
+/* ─── Typography ──────────────────────────────────────── */
+.font-display { font-family: 'Syne', system-ui, sans-serif; }
 
-/* Display size — responsive giant headline */
 .text-display {
-  font-size: clamp(3.5rem, 9vw, 8rem);
-  line-height: 0.95;
+  font-family: 'Syne', system-ui, sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.0;
   letter-spacing: -0.04em;
   font-weight: 800;
 }
 
-.text-display-md {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1.0;
-  letter-spacing: -0.035em;
-  font-weight: 800;
-}
-
 .text-display-sm {
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
-  line-height: 1.05;
+  font-family: 'Syne', system-ui, sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
   letter-spacing: -0.03em;
   font-weight: 700;
 }
 
-/* Label / eyebrow */
 .text-label {
-  font-size: 0.6875rem; /* 11px */
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #666666;
+  color: #555;
 }
 
-/* ─── Section spacing ───────────────────────────────────── */
-.section-pad { padding-top: clamp(5rem, 10vw, 9rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
+/* ─── Section spacing ─────────────────────────────────── */
+.section-pad    { padding-top: clamp(5rem, 10vw, 9rem);  padding-bottom: clamp(5rem, 10vw, 9rem); }
 .section-pad-lg { padding-top: clamp(7rem, 14vw, 12rem); padding-bottom: clamp(7rem, 14vw, 12rem); }
 
-/* ─── Visual utilities ──────────────────────────────────── */
+/* ─── Utilities ───────────────────────────────────────── */
+.hr-fade { height: 1px; background: linear-gradient(90deg, transparent, var(--bd) 20%, var(--bd) 80%, transparent); }
 
-/* Grid pattern — barely visible */
-.grid-lines {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-/* Hairline divider */
-.hr { height: 1px; background: #1A1A1A; }
-.hr-fade { height: 1px; background: linear-gradient(90deg, transparent, #1A1A1A 20%, #1A1A1A 80%, transparent); }
-
-/* Glass — pure dark */
 .glass {
-  background: rgba(0,0,0,0.7);
+  background: rgba(9,9,11,0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Accent glow text */
-.text-accent { color: #06B6D4; }
+.text-accent { color: var(--g); }
 
-/* Gradient text white→cyan */
 .gradient-text {
-  background: linear-gradient(135deg, #fff 30%, #06B6D4 100%);
+  background: linear-gradient(135deg, #fff 30%, var(--g) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ─── Apple-style word reveal ───────────────────────────── */
-.reveal-word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(30px);
-  filter: blur(4px);
-  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
-              transform 0.7s cubic-bezier(0.16,1,0.3,1),
-              filter 0.7s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal-word.visible {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
-
-/* ─── Sticky section helper ─────────────────────────────── */
-.sticky-panel {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* ─── WhatsApp notification bubble ─────────────────────── */
-.notif-bubble {
-  background: #1C1C1E;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-/* ─── Typing dots ───────────────────────────────────────── */
-@keyframes dot-blink {
-  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
-  40% { opacity: 1; transform: scale(1); }
-}
-.dot-1 { animation: dot-blink 1.4s infinite 0s; }
-.dot-2 { animation: dot-blink 1.4s infinite 0.2s; }
-.dot-3 { animation: dot-blink 1.4s infinite 0.4s; }
-
-/* ─── Price count animation ─────────────────────────────── */
-@keyframes count-up {
-  from { opacity: 0.3; }
-  to   { opacity: 1; }
-}
-
-/* ─── Noise overlay ─────────────────────────────────────── */
-.noise::before {
+/* ─── Grain overlay ───────────────────────────────────── */
+.grain::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 0;
-  border-radius: inherit;
+  z-index: 1;
+}
+
+/* ─── WhatsApp typing dots ────────────────────────────── */
+@keyframes dot-blink {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40%           { opacity: 1;   transform: scale(1); }
+}
+.dot-1 { animation: dot-blink 1.4s infinite 0s; }
+.dot-2 { animation: dot-blink 1.4s infinite 0.2s; }
+.dot-3 { animation: dot-blink 1.4s infinite 0.4s; }
+
+/* ─── CPU architecture paths ──────────────────────────── */
+.cpu-architecture { offset-anchor: 10px 0px; animation: animation-path; animation-iteration-count: infinite; animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99); }
+.cpu-line-1 { offset-path: path("M 10 20 h 79.5 q 5 0 5 5 v 30"); animation-duration: 5s; animation-delay: 1s; }
+.cpu-line-2 { offset-path: path("M 180 10 h -69.7 q -5 0 -5 5 v 40"); animation-delay: 6s; animation-duration: 2s; }
+.cpu-line-3 { offset-path: path("M 130 20 v 21.8 q 0 5 -5 5 h -25"); animation-delay: 4s; animation-duration: 6s; }
+.cpu-line-4 { offset-path: path("M 170 80 v -21.8 q 0 -5 -5 -5 h -65"); animation-delay: 3s; animation-duration: 3s; }
+.cpu-line-5 { offset-path: path("M 135 65 h 15 q 5 0 5 5 v 10 q 0 5 -5 5 h -39.8 q -5 0 -5 -5 v -35"); animation-delay: 9s; animation-duration: 4s; }
+.cpu-line-6 { offset-path: path("M 94.8 95 v -46"); animation-delay: 3s; animation-duration: 7s; }
+.cpu-line-7 { offset-path: path("M 88 88 v -15 q 0 -5 -5 -5 h -10 q -5 0 -5 -5 v -5 q 0 -5 5 -5 h 28"); animation-delay: 4s; animation-duration: 4s; }
+.cpu-line-8 { offset-path: path("M 30 30 h 25 q 5 0 5 5 v 6.5 q 0 5 5 5 h 35"); animation-delay: 3s; animation-duration: 3s; }
+@keyframes animation-path { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+
+/* ─── Radar ping ──────────────────────────────────────── */
+@keyframes radar-ping {
+  0%   { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.radar-ring { animation: radar-ping 2s ease-out infinite; }
+.radar-ring-2 { animation: radar-ping 2s ease-out infinite 0.5s; }
+.radar-ring-3 { animation: radar-ping 2s ease-out infinite 1s; }
+
+/* ─── Scanline ────────────────────────────────────────── */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanline {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--g), transparent);
+  opacity: 0.15;
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+  z-index: 2;
 }

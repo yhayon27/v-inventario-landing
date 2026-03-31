@@ -34,20 +34,20 @@ export default function Navbar() {
         <a href="#inicio" className="flex items-center gap-1.5 cursor-pointer">
           <span className="font-display text-sm font-bold text-white">
             <span className="text-vi-green">V·</span>Inventario
-            <span className="text-vi-muted font-normal ml-1">IA</span>
+            <span className="text-vi-body font-normal ml-1">IA</span>
           </span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
           {NAV.map((l) => (
-            <a key={l.label} href={l.href} className="text-[13px] text-vi-muted hover:text-white transition-colors cursor-pointer">
+            <a key={l.label} href={l.href} className="text-[13px] text-vi-body hover:text-white transition-colors cursor-pointer">
               {l.label}
             </a>
           ))}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="#precios" className="text-[13px] text-vi-muted hover:text-white transition-colors cursor-pointer">
+          <a href="#precios" className="text-[13px] text-vi-body hover:text-white transition-colors cursor-pointer">
             Iniciar sesión
           </a>
           <a href="#contacto" className="px-4 py-1.5 rounded-lg bg-vi-green text-black text-[13px] font-semibold hover:bg-green-400 transition-colors cursor-pointer">
@@ -55,7 +55,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        <button className="md:hidden text-vi-muted hover:text-white transition-colors cursor-pointer" onClick={() => setOpen(!open)} aria-label="Menú">
+        <button className="md:hidden text-vi-body hover:text-white transition-colors cursor-pointer" onClick={() => setOpen(!open)} aria-label="Menú">
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
@@ -63,7 +63,7 @@ export default function Navbar() {
       {open && (
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="md:hidden glass border-t border-vi-border px-6 py-4 flex flex-col gap-4">
           {NAV.map((l) => (
-            <a key={l.label} href={l.href} className="text-sm text-vi-muted hover:text-white transition-colors cursor-pointer" onClick={() => setOpen(false)}>
+            <a key={l.label} href={l.href} className="text-sm text-vi-body hover:text-white transition-colors cursor-pointer" onClick={() => setOpen(false)}>
               {l.label}
             </a>
           ))}

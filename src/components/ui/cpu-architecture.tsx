@@ -46,7 +46,7 @@ export function CpuArchitecture() {
         { x: 25, y: 25, label: 'FEFO' },
         { x: 88, y: 90, label: 'LOG' },
       ].map((n, i) => (
-        <div key={i} className="absolute w-[30px] h-[18px] bg-vi-surface1 border border-vi-border rounded text-[7px] text-vi-muted font-display flex items-center justify-center"
+        <div key={i} className="absolute w-[30px] h-[18px] bg-vi-surface1 border border-vi-border rounded text-[7px] text-vi-body font-display flex items-center justify-center"
           style={{ left: n.x, top: n.y }}>
           {n.label}
         </div>

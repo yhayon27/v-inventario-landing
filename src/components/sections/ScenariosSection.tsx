@@ -50,7 +50,7 @@ export default function ScenariosSection() {
               >
                 <p className="text-label text-vi-green mb-2">{h.kicker}</p>
                 <h3 className="font-display text-white text-xl font-bold mb-1">{h.title}</h3>
-                <p className="text-vi-muted text-sm">{h.desc}</p>
+                <p className="text-vi-body text-sm">{h.desc}</p>
               </motion.div>
             ))}
           </div>

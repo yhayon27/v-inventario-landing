@@ -6,12 +6,20 @@
 
 :root {
   --bg: #09090b;
+  --foreground: #f5f5f7;
   --g: #22c55e;
-  --gd: #0d1f13;
+  --gd: #0d2016;
   --gb: #163521;
-  --s1: #111113;
-  --s2: #161618;
-  --bd: #272729;
+  --s1: #161618;
+  --s2: #1a1a1d;
+  --bd: #2e2e32;
+  --card: #161618;
+  --card-foreground: #f5f5f7;
+  --muted: #2a2a2e;
+  --muted-foreground: #a0a0a6;
+  --border: #2e2e32;
+  --primary: #22c55e;
+  --primary-foreground: #09090b;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; }
@@ -20,7 +28,7 @@ html { scroll-behavior: smooth; background: var(--bg); }
 
 body {
   background-color: var(--bg);
-  color: #fff;
+  color: var(--foreground);
   font-family: 'DM Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -68,10 +76,10 @@ body {
 .hr-fade { height: 1px; background: linear-gradient(90deg, transparent, var(--bd) 20%, var(--bd) 80%, transparent); }
 
 .glass {
-  background: rgba(9,9,11,0.85);
+  background: rgba(9,9,11,0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .text-accent { color: var(--g); }

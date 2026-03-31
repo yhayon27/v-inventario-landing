@@ -119,8 +119,8 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
               className="absolute top-1/2 -translate-y-1/2 left-[calc(100%+1rem)] w-56 bg-vi-surface1 border border-vi-border rounded-2xl p-4">
               <p className="text-[10px] text-vi-green font-medium tracking-widest uppercase mb-1.5">{selected.category}</p>
               <h3 className="font-display text-white text-base font-bold mb-0.5">{selected.title}</h3>
-              <p className="text-[10px] text-vi-muted mb-2">{selected.date}</p>
-              <p className="text-xs text-vi-muted leading-relaxed">{selected.content}</p>
+              <p className="text-[10px] text-vi-body mb-2">{selected.date}</p>
+              <p className="text-xs text-vi-body leading-relaxed">{selected.content}</p>
               {selected.status === "in-progress" && (
                 <div className="mt-3 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-vi-green animate-pulse" />
@@ -155,7 +155,7 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
                   </div>
                   <div>
                     <p className="text-xs font-medium text-white">{item.title}</p>
-                    <p className="text-[9px] text-vi-subtle uppercase tracking-wider">{item.category}</p>
+                    <p className="text-[9px] text-vi-muted uppercase tracking-wider">{item.category}</p>
                   </div>
                 </div>
                 <span className={`text-[8px] text-vi-green transition-opacity ${selected?.id === item.id ? "opacity-0" : "opacity-60"}`}>
@@ -165,7 +165,7 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
               <AnimatePresence>
                 {selected?.id === item.id && (
                   <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
-                    className="text-[11px] text-vi-muted leading-relaxed overflow-hidden pt-1">
+                    className="text-[11px] text-vi-body leading-relaxed overflow-hidden pt-1">
                     {item.content}
                   </motion.p>
                 )}

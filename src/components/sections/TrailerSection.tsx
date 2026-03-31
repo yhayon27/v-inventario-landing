@@ -123,7 +123,7 @@ export default function TrailerSection() {
             <h3 key={`t-${current}`} className="font-display text-white text-2xl md:text-3xl font-bold max-w-xl mb-5 leading-tight" style={sceneStyle(0.05)}>
               {scene.title}
             </h3>
-            <p key={`b-${current}`} className="text-vi-muted text-sm max-w-md leading-relaxed whitespace-pre-line" style={sceneStyle(0.1)}>
+            <p key={`b-${current}`} className="text-vi-body text-sm max-w-md leading-relaxed whitespace-pre-line" style={sceneStyle(0.1)}>
               {scene.body}
             </p>
           </div>
@@ -139,7 +139,7 @@ export default function TrailerSection() {
             <div className="flex-1 h-0.5 bg-vi-border rounded-full overflow-hidden">
               <div className="h-full bg-vi-green rounded-full" style={{ width: `${progress * 100}%`, transition: "width 30ms linear" }} />
             </div>
-            <span className="text-[9px] text-vi-subtle tabular-nums">
+            <span className="text-[9px] text-vi-muted tabular-nums">
               {String(current + 1).padStart(2, "0")}/{String(SCENES.length).padStart(2, "0")}
             </span>
           </div>

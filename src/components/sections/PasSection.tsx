@@ -24,7 +24,7 @@ export default function PasSection() {
             {CHIPS.map((chip) => (
               <div key={chip} className="flex items-center gap-2 px-4 py-2 bg-vi-surface2 border border-vi-border rounded-full">
                 <div className="w-1.5 h-1.5 rounded-full bg-vi-orange" />
-                <span className="text-xs text-vi-subtle font-medium">{chip}</span>
+                <span className="text-xs text-vi-muted font-medium">{chip}</span>
               </div>
             ))}
           </div>

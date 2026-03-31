@@ -65,7 +65,7 @@ export default function Hero() {
             <a href="#contacto" className="px-7 py-3 rounded-xl bg-vi-green hover:bg-green-400 text-black font-semibold text-sm transition-colors cursor-pointer">
               Comenzar gratis
             </a>
-            <a href="#demo" className="px-7 py-3 rounded-xl border border-vi-border hover:border-vi-muted text-vi-muted hover:text-white font-semibold text-sm transition-colors cursor-pointer">
+            <a href="#demo" className="px-7 py-3 rounded-xl border border-vi-border hover:border-vi-muted text-vi-body hover:text-white font-semibold text-sm transition-colors cursor-pointer">
               Ver demo →
             </a>
           </div>
@@ -77,7 +77,7 @@ export default function Hero() {
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
-          <ChevronDown size={20} className="text-vi-muted" />
+          <ChevronDown size={20} className="text-vi-body" />
         </motion.div>
       </div>
 

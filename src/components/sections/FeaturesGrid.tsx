@@ -77,7 +77,7 @@ export default function FeaturesGrid() {
                       <Icon size={18} className="text-vi-green" />
                     </div>
                     <h3 className="font-display text-white text-xl font-bold mb-2">{step.title}</h3>
-                    <p className="text-vi-muted text-sm leading-relaxed">{step.desc}</p>
+                    <p className="text-vi-body text-sm leading-relaxed">{step.desc}</p>
                   </div>
 
                   {/* Visual */}

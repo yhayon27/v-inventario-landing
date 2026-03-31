@@ -59,7 +59,7 @@ export default function MetricsSection() {
                 <Counter target={m.value} suffix={m.suffix} />
               </p>
               <p className="text-white font-semibold text-sm mb-1">{m.label}</p>
-              <p className="text-vi-muted text-xs">{m.desc}</p>
+              <p className="text-vi-body text-xs">{m.desc}</p>
             </motion.div>
           ))}
         </div>

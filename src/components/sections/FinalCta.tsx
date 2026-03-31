@@ -49,14 +49,14 @@ export default function FinalCta() {
               className="flex flex-col gap-3 bg-vi-surface1 border border-vi-border rounded-2xl p-6"
             >
               <input name="nombre" required placeholder="Tu nombre"
-                className="w-full bg-vi-surface2 border border-vi-border rounded-xl px-4 py-3 text-sm text-white placeholder:text-vi-muted focus:outline-none focus:border-vi-green-border transition-colors" />
+                className="w-full bg-vi-surface2 border border-vi-border rounded-xl px-4 py-3 text-sm text-white placeholder:text-vi-placeholder focus:outline-none focus:border-vi-green-border transition-colors" />
               <div className="flex items-center gap-2">
-                <span className="text-vi-muted text-xs bg-vi-surface2 border border-vi-border rounded-xl px-3 py-3 shrink-0">+58</span>
+                <span className="text-vi-body text-xs bg-vi-surface2 border border-vi-border rounded-xl px-3 py-3 shrink-0">+58</span>
                 <input name="whatsapp" required placeholder="Número de WhatsApp" type="tel"
-                  className="w-full bg-vi-surface2 border border-vi-border rounded-xl px-4 py-3 text-sm text-white placeholder:text-vi-muted focus:outline-none focus:border-vi-green-border transition-colors" />
+                  className="w-full bg-vi-surface2 border border-vi-border rounded-xl px-4 py-3 text-sm text-white placeholder:text-vi-placeholder focus:outline-none focus:border-vi-green-border transition-colors" />
               </div>
               <select name="tipo" required
-                className="w-full bg-vi-surface2 border border-vi-border rounded-xl px-4 py-3 text-sm text-vi-muted focus:outline-none focus:border-vi-green-border transition-colors appearance-none cursor-pointer">
+                className="w-full bg-vi-surface2 border border-vi-border rounded-xl px-4 py-3 text-sm text-vi-body focus:outline-none focus:border-vi-green-border transition-colors appearance-none cursor-pointer">
                 <option value="">Tipo de negocio</option>
                 {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
@@ -78,7 +78,7 @@ export default function FinalCta() {
               </div>
               <div className="text-center">
                 <p className="text-white font-display font-bold text-lg mb-1">¡Listo!</p>
-                <p className="text-vi-muted text-sm">Te contactamos por WhatsApp en las próximas horas.</p>
+                <p className="text-vi-body text-sm">Te contactamos por WhatsApp en las próximas horas.</p>
               </div>
             </motion.div>
           )}

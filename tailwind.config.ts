@@ -10,18 +10,20 @@ const config: Config = {
     extend: {
       colors: {
         vi: {
-          bg:           "#09090b",
-          surface1:     "#111113",
-          surface2:     "#161618",
-          border:       "#272729",
-          green:        "#22c55e",
-          "green-dim":  "#0d1f13",
+          bg:            "#09090b",
+          surface1:      "#161618",
+          surface2:      "#1a1a1d",
+          "surface-up":  "#1e1e22",
+          border:        "#2e2e32",
+          green:         "#22c55e",
+          "green-dim":   "#0d2016",
           "green-border":"#163521",
-          muted:        "#999999",
-          subtle:       "#888888",
-          sub:          "#aaaaaa",
-          orange:       "#f97316",
-          white:        "#ffffff",
+          body:          "#c4c4c8",
+          sub:           "#a0a0a6",
+          muted:         "#888890",
+          placeholder:   "#666670",
+          orange:        "#f97316",
+          white:         "#ffffff",
         },
       },
       fontFamily: {
@@ -33,7 +35,7 @@ const config: Config = {
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
         "radar":      "radar 2s ease-out infinite",
         "float":      "float 6s ease-in-out infinite",
-        "node-pulse": "node-pulse 2s ease-in-out infinite",
+        "node-pulse": "node-pulse 2.5s ease-in-out infinite",
       },
       keyframes: {
         "fade-in": {

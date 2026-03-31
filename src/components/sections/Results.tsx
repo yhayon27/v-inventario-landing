@@ -51,7 +51,7 @@ export default function Results() {
                       <Icon size={16} className="text-vi-green" />
                     </div>
                     <h3 className="font-display text-white font-bold text-sm mb-1.5">{f.title}</h3>
-                    <p className="text-vi-muted text-xs leading-relaxed">{f.desc}</p>
+                    <p className="text-vi-body text-xs leading-relaxed">{f.desc}</p>
                   </div>
                 </SpotlightCard>
               </BentoItem>

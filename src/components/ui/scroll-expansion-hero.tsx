@@ -55,7 +55,7 @@ export function ScrollExpandMedia({ children, title, subtitle }: ScrollExpandMed
           {/* Fallback dark bg when no children */}
           {!children && (
             <div className="w-full h-[70vh] bg-vi-surface2 flex items-center justify-center">
-              <span className="text-vi-muted text-sm">Trailer preview</span>
+              <span className="text-vi-body text-sm">Trailer preview</span>
             </div>
           )}
         </motion.div>

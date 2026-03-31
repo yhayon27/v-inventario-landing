@@ -50,10 +50,10 @@ export default function Pricing() {
           <h2 className="text-display-sm text-white mb-8">Simple. Sin sorpresas.</h2>
 
           <div className="inline-flex items-center gap-1 bg-vi-surface1 border border-vi-border rounded-full p-1">
-            <button onClick={() => setAnual(false)} className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${!anual ? 'bg-white text-black' : 'text-vi-muted hover:text-white'}`}>
+            <button onClick={() => setAnual(false)} className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${!anual ? 'bg-white text-black' : 'text-vi-body hover:text-white'}`}>
               Mensual
             </button>
-            <button onClick={() => setAnual(true)} className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${anual ? 'bg-white text-black' : 'text-vi-muted hover:text-white'}`}>
+            <button onClick={() => setAnual(true)} className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${anual ? 'bg-white text-black' : 'text-vi-body hover:text-white'}`}>
               Anual
               <span className="text-[9px] font-bold bg-vi-green text-black px-1.5 py-0.5 rounded-full">-2 meses</span>
             </button>
@@ -79,7 +79,7 @@ export default function Pricing() {
               )}
               <div>
                 <h3 className="font-display text-white font-bold text-lg mb-1">{plan.nombre}</h3>
-                <p className="text-vi-muted text-xs">{plan.desc}</p>
+                <p className="text-vi-body text-xs">{plan.desc}</p>
               </div>
               <div className="flex items-end gap-1">
                 <AnimatePresence mode="wait">
@@ -87,14 +87,14 @@ export default function Pricing() {
                     ${anual ? plan.anual : plan.mensual}
                   </motion.span>
                 </AnimatePresence>
-                <span className="text-vi-muted text-xs mb-1.5">/mes</span>
+                <span className="text-vi-body text-xs mb-1.5">/mes</span>
               </div>
               <button className={`w-full py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                plan.destacado ? 'bg-vi-green text-black hover:bg-green-400' : 'border border-vi-border text-vi-muted hover:text-white hover:border-vi-muted'
+                plan.destacado ? 'bg-vi-green text-black hover:bg-green-400' : 'border border-vi-border text-vi-body hover:text-white hover:border-vi-muted'
               }`}>{plan.cta}</button>
               <ul className="flex flex-col gap-2">
                 {plan.funciones.map((fn) => (
-                  <li key={fn} className="flex items-start gap-2 text-xs text-vi-muted">
+                  <li key={fn} className="flex items-start gap-2 text-xs text-vi-body">
                     <Check size={12} className="text-vi-green mt-0.5 shrink-0" />
                     {fn}
                   </li>
@@ -103,7 +103,7 @@ export default function Pricing() {
             </motion.div>
           ))}
         </div>
-        <p className="text-center text-vi-subtle text-[10px] mt-6">Precios en USD. IGTF incluido.</p>
+        <p className="text-center text-vi-muted text-[10px] mt-6">Precios en USD. IGTF incluido.</p>
       </div>
       <div className="hr-fade absolute bottom-0 inset-x-0" />
     </section>

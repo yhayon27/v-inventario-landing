@@ -9,9 +9,9 @@
   --g: #22c55e;
   --gd: #0d1f13;
   --gb: #163521;
-  --s1: #0d0d0f;
-  --s2: #111114;
-  --bd: #1c1c1f;
+  --s1: #111113;
+  --s2: #161618;
+  --bd: #272729;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; }
@@ -57,7 +57,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #555;
+  color: #22c55e;
 }
 
 /* ─── Section spacing ─────────────────────────────────── */

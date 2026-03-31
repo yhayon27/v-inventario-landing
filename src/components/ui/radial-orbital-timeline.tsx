@@ -52,7 +52,7 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
         <svg width="580" height="580" viewBox="-290 -290 580 580" className="overflow-visible">
           {/* Orbit rings */}
           {ORBITS.map((o) => (
-            <circle key={o.r} cx="0" cy="0" r={o.r} fill="none" stroke="#1c1c1f" strokeWidth="1" />
+            <circle key={o.r} cx="0" cy="0" r={o.r} fill="none" stroke="#272729" strokeWidth="1" />
           ))}
 
           {/* Connection lines */}
@@ -77,17 +77,25 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
               <g key={item.id} transform={`translate(${x}, ${y})`}
                 onClick={() => setSelected(isSel ? null : item)}
                 style={{ cursor: "pointer" }}>
+                {/* Pulse ring for interactivity hint */}
+                {!selected && (
+                  <circle r="24" fill="none" stroke="#22c55e" strokeWidth="1" opacity="0.3">
+                    <animate attributeName="r" values="22;28;22" dur="2s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite" />
+                  </circle>
+                )}
                 <circle r="20"
-                  fill={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.1)" : "#0d0d0f"}
-                  stroke={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.4)" : "#1c1c1f"}
-                  strokeWidth="1.5" />
+                  fill={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.15)" : "#111113"}
+                  stroke={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.4)" : "#272729"}
+                  strokeWidth="1.5"
+                  style={{ transition: "fill 0.2s, stroke 0.2s" }} />
                 <foreignObject x="-8" y="-8" width="16" height="16">
                   <div className="w-4 h-4 flex items-center justify-center">
-                    <Icon size={11} color={isSel ? "#000" : isRel ? "#22c55e" : "#555"} />
+                    <Icon size={11} color={isSel ? "#000" : isRel ? "#22c55e" : "#888"} />
                   </div>
                 </foreignObject>
                 <text y="32" textAnchor="middle" fontSize="8"
-                  fill={isSel ? "#22c55e" : "#555"} fontFamily="DM Sans, system-ui">
+                  fill={isSel ? "#22c55e" : "#999"} fontFamily="DM Sans, system-ui">
                   {item.title}
                 </text>
               </g>
@@ -95,7 +103,7 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
           })}
 
           {/* Center orb — GREEN not purple */}
-          <circle cx="0" cy="0" r="26" fill="#0d0d0f" stroke="rgba(34,197,94,0.2)" strokeWidth="1.5" />
+          <circle cx="0" cy="0" r="26" fill="#111113" stroke="rgba(34,197,94,0.25)" strokeWidth="1.5" />
           <text x="0" y="-3" textAnchor="middle" fontSize="7" fill="#22c55e" fontFamily="Syne, system-ui" fontWeight="700">V·INV</text>
           <text x="0" y="7" textAnchor="middle" fontSize="6" fill="#555" fontFamily="DM Sans, system-ui">IA</text>
         </svg>
@@ -134,16 +142,25 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.03, ease: E }}
-              className="bg-vi-surface1 border border-vi-border rounded-xl p-3.5 cursor-pointer hover:border-vi-green-border transition-colors"
+              className={`border rounded-xl p-3.5 cursor-pointer transition-all duration-200 ${
+                selected?.id === item.id
+                  ? "bg-[#1a1a1c] border-vi-green/40 border-l-[3px] border-l-vi-green shadow-[0_0_15px_rgba(34,197,94,0.08)] scale-[1.02]"
+                  : "bg-vi-surface1 border-vi-border hover:border-vi-green-border hover:bg-[#1a1a1c] hover:border-l-[3px] hover:border-l-vi-green"
+              }`}
               onClick={() => setSelected(selected?.id === item.id ? null : item)}>
-              <div className="flex items-center gap-2.5 mb-1.5">
-                <div className="w-7 h-7 rounded-lg bg-vi-green-dim border border-vi-green-border flex items-center justify-center shrink-0">
-                  <Icon size={13} color="#22c55e" />
+              <div className="flex items-center justify-between mb-1.5">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-vi-green-dim border border-vi-green-border flex items-center justify-center shrink-0">
+                    <Icon size={13} color="#22c55e" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-white">{item.title}</p>
+                    <p className="text-[9px] text-vi-subtle uppercase tracking-wider">{item.category}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs font-medium text-white">{item.title}</p>
-                  <p className="text-[9px] text-vi-muted uppercase tracking-wider">{item.category}</p>
-                </div>
+                <span className={`text-[8px] text-vi-green transition-opacity ${selected?.id === item.id ? "opacity-0" : "opacity-60"}`}>
+                  Ver función →
+                </span>
               </div>
               <AnimatePresence>
                 {selected?.id === item.id && (

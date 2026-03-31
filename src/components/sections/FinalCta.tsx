@@ -34,7 +34,7 @@ export default function FinalCta() {
           className="text-center mb-10"
         >
           <h2 className="text-display-sm text-white mb-3">Tu negocio merece datos reales.</h2>
-          <p className="text-vi-muted text-sm">Sin tarjeta. Sin contrato. Activo en 5 minutos.</p>
+          <p className="text-vi-sub text-sm">Sin tarjeta. Sin contrato. Activo en 5 minutos.</p>
         </motion.div>
 
         <AnimatePresence mode="wait">

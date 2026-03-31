@@ -24,7 +24,7 @@ export default function PasSection() {
             {CHIPS.map((chip) => (
               <div key={chip} className="flex items-center gap-2 px-4 py-2 bg-vi-surface2 border border-vi-border rounded-full">
                 <div className="w-1.5 h-1.5 rounded-full bg-vi-orange" />
-                <span className="text-xs text-vi-muted font-medium">{chip}</span>
+                <span className="text-xs text-vi-subtle font-medium">{chip}</span>
               </div>
             ))}
           </div>
@@ -34,7 +34,7 @@ export default function PasSection() {
             <p className="text-white font-display font-bold text-xl md:text-2xl mb-2">
               La realidad del comerciante venezolano.
             </p>
-            <p className="text-vi-muted text-sm">
+            <p className="text-vi-sub text-sm">
               Hay una mejor manera.
             </p>
           </div>

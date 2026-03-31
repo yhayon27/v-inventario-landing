@@ -15,7 +15,7 @@ export default function Footer() {
           <span className="font-display text-sm font-bold text-white">
             <span className="text-vi-green">V·</span>Inventario <span className="text-vi-muted font-normal">IA</span>
           </span>
-          <span className="text-vi-muted text-xs">Hecho en Venezuela 🇻🇪</span>
+          <span className="text-vi-subtle text-xs">Hecho en Venezuela 🇻🇪</span>
         </div>
 
         <div className="flex items-center gap-6">
@@ -26,7 +26,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex items-center gap-4 text-[10px] text-vi-muted">
+        <div className="flex items-center gap-4 text-[10px] text-vi-subtle">
           <a href="#" className="hover:text-white transition-colors cursor-pointer">Privacidad</a>
           <a href="#" className="hover:text-white transition-colors cursor-pointer">Términos</a>
           <span>© 2025 V·Inventario IA</span>

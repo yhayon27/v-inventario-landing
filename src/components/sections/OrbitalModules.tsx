@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Package, ShoppingCart, TrendingUp, Users, Percent,
@@ -24,6 +25,14 @@ const MÓDULOS: TimelineItem[] = [
 ];
 
 export default function OrbitalModules() {
+  const [mobileHint, setMobileHint] = useState(true);
+
+  // Auto-hide mobile hint after 3s
+  useEffect(() => {
+    const t = setTimeout(() => setMobileHint(false), 3000);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <section className="section-pad relative bg-vi-bg overflow-hidden" id="modulos-orbital">
       <div className="hr-fade absolute top-0 inset-x-0" />
@@ -34,14 +43,19 @@ export default function OrbitalModules() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: E }}
-          className="text-center mb-16"
+          className="text-center mb-4"
         >
           <p className="text-label text-vi-green mb-4">Ecosistema</p>
           <h2 className="text-display-sm text-white mb-3">12 módulos conectados.</h2>
-          <p className="text-vi-muted text-sm max-w-md mx-auto">
+          <p className="text-vi-sub text-sm max-w-md mx-auto">
             Haz clic en cualquier módulo para explorar cómo se integra con el resto.
           </p>
         </motion.div>
+
+        {/* Instruction label — desktop */}
+        <p className="hidden lg:block text-center text-vi-green text-[10px] tracking-[0.15em] uppercase mb-10 animate-pulse">
+          Toca cada módulo para ver su función →
+        </p>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -52,6 +66,18 @@ export default function OrbitalModules() {
         >
           <RadialOrbitalTimeline timelineData={MÓDULOS} />
         </motion.div>
+
+        {/* Mobile swipe hint */}
+        {mobileHint && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lg:hidden text-center text-vi-green text-[10px] tracking-[0.15em] uppercase mt-6 animate-pulse"
+          >
+            Toca para explorar ↓
+          </motion.p>
+        )}
       </div>
 
       <div className="hr-fade absolute bottom-0 inset-x-0" />

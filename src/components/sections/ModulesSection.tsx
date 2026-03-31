@@ -26,14 +26,14 @@ function DashboardMockup() {
       <div className="flex items-center justify-between px-5 py-3 border-b border-vi-border">
         <div className="flex items-center gap-2">
           <span className="font-display text-xs font-bold text-white"><span className="text-vi-green">V·</span>Inventario</span>
-          <span className="text-[10px] text-vi-muted">Dashboard</span>
+          <span className="text-[10px] text-vi-subtle">Dashboard</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1.5 px-2 py-0.5 bg-vi-green-dim border border-vi-green-border rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-vi-green animate-pulse" />
             <span className="text-[9px] text-vi-green font-semibold">EN VIVO</span>
           </span>
-          <span className="text-[10px] text-vi-muted">BCV: Bs 36.50</span>
+          <span className="text-[10px] text-vi-subtle">BCV: Bs 36.50</span>
         </div>
       </div>
 
@@ -41,9 +41,9 @@ function DashboardMockup() {
       <div className="grid grid-cols-3 gap-3 p-5">
         {METRICS.map((m) => (
           <div key={m.label} className="bg-vi-surface2 border border-vi-border rounded-xl p-4">
-            <p className="text-[10px] text-vi-muted mb-1">{m.label}</p>
+            <p className="text-[10px] text-vi-subtle mb-1">{m.label}</p>
             <p className={`font-display text-xl font-bold ${m.color}`}>{m.value}</p>
-            <p className="text-[9px] text-vi-muted mt-0.5">{m.sub}</p>
+            <p className="text-[9px] text-vi-subtle mt-0.5">{m.sub}</p>
           </div>
         ))}
       </div>
@@ -52,7 +52,7 @@ function DashboardMockup() {
       <div className="px-5 pb-4">
         <div className="bg-vi-surface2 border border-vi-border rounded-xl p-4">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[10px] text-vi-muted">Ventas últimos 7 días</span>
+            <span className="text-[10px] text-vi-subtle">Ventas últimos 7 días</span>
             <span className="text-[10px] text-vi-green">+18.3%</span>
           </div>
           <svg className="w-full h-16" viewBox="0 0 300 60" fill="none">
@@ -70,12 +70,12 @@ function DashboardMockup() {
 
       {/* Alerts */}
       <div className="px-5 pb-5">
-        <p className="text-[10px] text-vi-muted mb-2">Alertas IA</p>
+        <p className="text-[10px] text-vi-subtle mb-2">Alertas IA</p>
         <div className="flex flex-col gap-1.5">
           {ALERTS.map((a, i) => (
             <div key={i} className="flex items-center gap-2 px-3 py-2 bg-vi-surface2 border border-vi-border rounded-lg">
               <a.icon size={12} className={a.urgent ? "text-vi-orange" : "text-vi-green"} />
-              <span className="text-[10px] text-vi-muted">{a.text}</span>
+              <span className="text-[10px] text-vi-subtle">{a.text}</span>
             </div>
           ))}
         </div>

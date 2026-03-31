@@ -103,7 +103,7 @@ export default function Pricing() {
             </motion.div>
           ))}
         </div>
-        <p className="text-center text-vi-muted text-[10px] mt-6">Precios en USD. IGTF incluido.</p>
+        <p className="text-center text-vi-subtle text-[10px] mt-6">Precios en USD. IGTF incluido.</p>
       </div>
       <div className="hr-fade absolute bottom-0 inset-x-0" />
     </section>

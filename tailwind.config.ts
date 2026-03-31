@@ -10,16 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         vi: {
-          bg:         "#09090b",
-          surface1:   "#0d0d0f",
-          surface2:   "#111114",
-          border:     "#1c1c1f",
-          green:      "#22c55e",
-          "green-dim":"#0d1f13",
+          bg:           "#09090b",
+          surface1:     "#111113",
+          surface2:     "#161618",
+          border:       "#272729",
+          green:        "#22c55e",
+          "green-dim":  "#0d1f13",
           "green-border":"#163521",
-          muted:      "#555555",
-          orange:     "#f97316",
-          white:      "#ffffff",
+          muted:        "#999999",
+          subtle:       "#888888",
+          sub:          "#aaaaaa",
+          orange:       "#f97316",
+          white:        "#ffffff",
         },
       },
       fontFamily: {
@@ -31,6 +33,7 @@ const config: Config = {
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
         "radar":      "radar 2s ease-out infinite",
         "float":      "float 6s ease-in-out infinite",
+        "node-pulse": "node-pulse 2s ease-in-out infinite",
       },
       keyframes: {
         "fade-in": {
@@ -48,6 +51,10 @@ const config: Config = {
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
           "50%":      { transform: "translateY(-10px)" },
+        },
+        "node-pulse": {
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(34,197,94,0.3)" },
+          "50%":      { boxShadow: "0 0 0 6px rgba(34,197,94,0)" },
         },
       },
     },

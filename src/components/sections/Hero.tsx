@@ -56,7 +56,7 @@ export default function Hero() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-vi-muted text-lg max-w-xl leading-relaxed">
+          <p className="text-vi-sub text-lg max-w-xl leading-relaxed">
             El único sistema diseñado para la economía venezolana. Controla inventario, fiados y precios desde WhatsApp, 24/7.
           </p>
 

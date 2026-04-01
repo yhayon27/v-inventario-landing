@@ -9,20 +9,11 @@ interface Marker {
   label: string;
 }
 
-interface Arc {
-  id: string;
-  from: [number, number];
-  to: [number, number];
-  label?: string;
-}
-
 interface GlobeProps {
   markers?: Marker[];
-  arcs?: Arc[];
   className?: string;
   markerColor?: [number, number, number];
   baseColor?: [number, number, number];
-  arcColor?: [number, number, number];
   glowColor?: [number, number, number];
   dark?: number;
   mapBrightness?: number;
@@ -45,24 +36,25 @@ export function Globe({
 }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
-  const pointerInteractionMovement = useRef(0);
-  const phiRef = useRef(0);
-  const rRef = useRef(0);
+  const dragDelta = useRef(0);
+  const phi = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    let globe: ReturnType<typeof createGlobe> | null = null;
-    let width = 0;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let globe: any = null;
+    let raf: number;
 
-    const initGlobe = () => {
-      width = canvas.offsetWidth;
+    const init = () => {
+      const width = canvas.offsetWidth;
       if (width === 0) {
-        requestAnimationFrame(initGlobe);
+        raf = requestAnimationFrame(init);
         return;
       }
 
+      // Create the globe with initial options
       globe = createGlobe(canvas, {
         devicePixelRatio: 2,
         width: width * 2,
@@ -77,28 +69,38 @@ export function Globe({
         markerColor,
         glowColor,
         markers: markers.map((m) => ({ location: m.location, size: markerSize })),
-        onRender: (state: Record<string, number>) => {
-          if (pointerInteracting.current === null) {
-            phiRef.current += speed;
-          }
-          state.phi = phiRef.current + rRef.current;
-          state.width = width * 2;
-          state.height = width * 2;
-        },
       } as Parameters<typeof createGlobe>[1]);
 
+      // Animate rotation via update()
+      const animate = () => {
+        if (pointerInteracting.current === null) {
+          phi.current += speed;
+        }
+        const w = canvas.offsetWidth;
+        globe?.update?.({
+          phi: phi.current + dragDelta.current / 200,
+          width: w * 2,
+          height: w * 2,
+        });
+        raf = requestAnimationFrame(animate);
+      };
+
+      raf = requestAnimationFrame(animate);
+
       // Fade in
-      setTimeout(() => { canvas.style.opacity = "1"; }, 100);
+      setTimeout(() => { canvas.style.opacity = "1"; }, 150);
     };
 
+    raf = requestAnimationFrame(init);
+
     const onResize = () => {
-      width = canvas.offsetWidth;
+      const w = canvas.offsetWidth;
+      globe?.update?.({ width: w * 2, height: w * 2 });
     };
     window.addEventListener("resize", onResize);
 
-    requestAnimationFrame(initGlobe);
-
     return () => {
+      cancelAnimationFrame(raf);
       globe?.destroy();
       window.removeEventListener("resize", onResize);
     };
@@ -109,28 +111,22 @@ export function Globe({
       <canvas
         ref={canvasRef}
         onPointerDown={(e) => {
-          pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
+          pointerInteracting.current = e.clientX - dragDelta.current;
           if (canvasRef.current) canvasRef.current.style.cursor = "grabbing";
         }}
         onPointerUp={() => {
           pointerInteracting.current = null;
           if (canvasRef.current) canvasRef.current.style.cursor = "grab";
         }}
-        onPointerOut={() => {
-          pointerInteracting.current = null;
-        }}
+        onPointerOut={() => { pointerInteracting.current = null; }}
         onMouseMove={(e) => {
           if (pointerInteracting.current !== null) {
-            const delta = e.clientX - pointerInteracting.current;
-            pointerInteractionMovement.current = delta;
-            rRef.current = delta / 200;
+            dragDelta.current = e.clientX - pointerInteracting.current;
           }
         }}
         onTouchMove={(e) => {
           if (pointerInteracting.current !== null && e.touches[0]) {
-            const delta = e.touches[0].clientX - pointerInteracting.current;
-            pointerInteractionMovement.current = delta;
-            rRef.current = delta / 100;
+            dragDelta.current = e.touches[0].clientX - pointerInteracting.current;
           }
         }}
         style={{ width: "100%", height: "100%", cursor: "grab", opacity: 0, transition: "opacity 1s ease" }}

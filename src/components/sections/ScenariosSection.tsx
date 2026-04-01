@@ -109,8 +109,8 @@ export default function ScenariosSection() {
 
             {/* Technique 4 — Float animation wrapper */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
             >
               {/* Technique 1 — 3D parallax container */}
               <motion.div

@@ -9,35 +9,63 @@ interface Marker {
   label: string;
 }
 
+interface Arc {
+  id: string;
+  from: [number, number];
+  to: [number, number];
+  label?: string;
+}
+
 interface GlobeProps {
   markers?: Marker[];
+  arcs?: Arc[];
   className?: string;
   markerColor?: [number, number, number];
   baseColor?: [number, number, number];
+  arcColor?: [number, number, number];
   glowColor?: [number, number, number];
   dark?: number;
   mapBrightness?: number;
   markerSize?: number;
   speed?: number;
   theta?: number;
+  arcWidth?: number;
+  arcHeight?: number;
 }
 
 export function Globe({
   markers = [],
+  arcs = [],
   className,
   markerColor = [0.2, 0.85, 0.4],
   baseColor = [0.08, 0.08, 0.08],
+  arcColor = [0.2, 0.85, 0.4],
   glowColor = [0.2, 0.85, 0.4],
   dark = 1,
-  mapBrightness = 6,
-  markerSize = 0.05,
+  mapBrightness = 7,
+  markerSize = 0.06,
   speed = 0.004,
   theta = 0.3,
+  arcWidth = 1.5,
+  arcHeight = 0.4,
 }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const dragDelta = useRef(0);
   const phi = useRef(0);
+  const isVisible = useRef(false);
+
+  // Pause when off-screen
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisible.current = entry.isIntersecting; },
+      { threshold: 0.1 }
+    );
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -54,9 +82,8 @@ export function Globe({
         return;
       }
 
-      // Create the globe with initial options
       globe = createGlobe(canvas, {
-        devicePixelRatio: 2,
+        devicePixelRatio: Math.min(window.devicePixelRatio, 2),
         width: width * 2,
         height: width * 2,
         phi: 0,
@@ -68,11 +95,20 @@ export function Globe({
         baseColor,
         markerColor,
         glowColor,
+        arcColor,
+        arcWidth,
+        arcHeight,
         markers: markers.map((m) => ({ location: m.location, size: markerSize })),
+        arcs: arcs.map((a) => ({ from: a.from, to: a.to })),
       } as Parameters<typeof createGlobe>[1]);
 
-      // Animate rotation via update()
       const animate = () => {
+        // Skip rendering when off-screen
+        if (!isVisible.current) {
+          raf = requestAnimationFrame(animate);
+          return;
+        }
+
         if (pointerInteracting.current === null) {
           phi.current += speed;
         }
@@ -86,8 +122,6 @@ export function Globe({
       };
 
       raf = requestAnimationFrame(animate);
-
-      // Fade in
       setTimeout(() => { canvas.style.opacity = "1"; }, 150);
     };
 
@@ -104,7 +138,7 @@ export function Globe({
       globe?.destroy();
       window.removeEventListener("resize", onResize);
     };
-  }, [markers, baseColor, markerColor, glowColor, dark, mapBrightness, markerSize, speed, theta]);
+  }, [markers, arcs, baseColor, markerColor, arcColor, glowColor, dark, mapBrightness, markerSize, speed, theta, arcWidth, arcHeight]);
 
   return (
     <div className={cn("relative aspect-square", className)}>

@@ -37,7 +37,9 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
 export default function MetricsSection() {
   return (
-    <section className="py-20 relative bg-vi-surface1 border-y border-vi-border overflow-hidden">
+    <section className="section-pad relative bg-vi-bg overflow-hidden">
+      <div className="hr-fade absolute top-0 inset-x-0" />
+
       {/* Grid lines */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.03]">
         <defs>
@@ -87,6 +89,8 @@ export default function MetricsSection() {
           <LossChart />
         </motion.div>
       </div>
+
+      <div className="hr-fade absolute bottom-0 inset-x-0" />
     </section>
   );
 }

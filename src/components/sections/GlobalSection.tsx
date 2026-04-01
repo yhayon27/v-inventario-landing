@@ -13,6 +13,33 @@ const BULLETS = [
   { icon: Wifi, text: "Funciona con señal básica de 2G" },
 ];
 
+const MARKERS = [
+  { id: "ccs",  location: [10.4806, -66.9036] as [number, number], label: "Caracas" },
+  { id: "mara", location: [10.6666, -71.6333] as [number, number], label: "Maracaibo" },
+  { id: "val",  location: [10.1667, -67.9833] as [number, number], label: "Valencia" },
+  { id: "bog",  location: [4.7110,  -74.0721] as [number, number], label: "Bogotá" },
+  { id: "mia",  location: [25.7617, -80.1918] as [number, number], label: "Miami" },
+  { id: "cdmx", location: [19.4326, -99.1332] as [number, number], label: "México DF" },
+  { id: "lima", location: [-12.0464,-77.0428] as [number, number], label: "Lima" },
+  { id: "bue",  location: [-34.6037,-58.3816] as [number, number], label: "Bs. Aires" },
+  { id: "sao",  location: [-23.5505,-46.6333] as [number, number], label: "São Paulo" },
+  { id: "stg",  location: [-33.4489,-70.6693] as [number, number], label: "Santiago" },
+  { id: "pan",  location: [8.9936,  -79.5197] as [number, number], label: "Panamá" },
+  { id: "mad",  location: [40.4168,  -3.7038] as [number, number], label: "Madrid" },
+];
+
+const ARCS = [
+  { id: "ccs-mia",  from: [10.4806,-66.9036] as [number, number], to: [25.7617,-80.1918] as [number, number] },
+  { id: "ccs-bog",  from: [10.4806,-66.9036] as [number, number], to: [4.7110,-74.0721]  as [number, number] },
+  { id: "ccs-pan",  from: [10.4806,-66.9036] as [number, number], to: [8.9936,-79.5197]  as [number, number] },
+  { id: "ccs-lima", from: [10.4806,-66.9036] as [number, number], to: [-12.0464,-77.0428] as [number, number] },
+  { id: "ccs-bue",  from: [10.4806,-66.9036] as [number, number], to: [-34.6037,-58.3816] as [number, number] },
+  { id: "mia-cdmx", from: [25.7617,-80.1918] as [number, number], to: [19.4326,-99.1332] as [number, number] },
+  { id: "bog-lima",  from: [4.7110,-74.0721]  as [number, number], to: [-12.0464,-77.0428] as [number, number] },
+  { id: "bue-sao",  from: [-34.6037,-58.3816] as [number, number], to: [-23.5505,-46.6333] as [number, number] },
+  { id: "mia-mad",  from: [25.7617,-80.1918]  as [number, number], to: [40.4168,-3.7038]   as [number, number] },
+];
+
 export default function GlobalSection() {
   return (
     <section className="section-pad relative bg-vi-bg overflow-hidden" id="global">
@@ -62,27 +89,24 @@ export default function GlobalSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: E }}
-            className="relative w-full max-w-[500px] aspect-square mx-auto"
+            className="relative w-full max-w-[500px] aspect-square mx-auto will-change-transform"
           >
-            {/* Green glow behind globe */}
             <div className="absolute inset-0 rounded-full bg-vi-green/10 blur-[80px] pointer-events-none z-0" />
 
             <Globe
-              markers={[
-                { id: "ccs", location: [10.4806, -66.9036], label: "Caracas" },
-                { id: "mia", location: [25.7617, -80.1918], label: "Miami" },
-                { id: "bog", location: [4.7110, -74.0721], label: "Bogotá" },
-                { id: "cdmx", location: [19.4326, -99.1332], label: "Ciudad de México" },
-                { id: "bue", location: [-34.6037, -58.3816], label: "Buenos Aires" },
-              ]}
+              markers={MARKERS}
+              arcs={ARCS}
               markerColor={[0.2, 0.85, 0.4]}
+              arcColor={[0.2, 0.85, 0.4]}
               baseColor={[0.08, 0.08, 0.08]}
               glowColor={[0.2, 0.85, 0.4]}
               dark={1}
-              mapBrightness={6}
+              mapBrightness={7}
               speed={0.004}
-              markerSize={0.05}
+              markerSize={0.06}
               theta={0.3}
+              arcWidth={1.5}
+              arcHeight={0.4}
               className="relative z-10 w-full"
             />
           </motion.div>

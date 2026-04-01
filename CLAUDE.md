@@ -257,3 +257,22 @@ Los problemas reales que el software resuelve:
 - **WhatsApp:** Es el canal de comunicación primario en Venezuela, no una app dedicada
 
 El tono es directo, sin rodeos, con datos concretos. Nunca usar términos vagos como "solución integral" o "plataforma robusta".
+## Referencia visual objetivo
+framer.com — ese nivel exacto de calidad:
+- Tipografía enorme en el hero (clamp responsive)
+- Mucho espacio negativo, nada apretado
+- Scroll animations suaves con Framer Motion (no bruscas)
+- Grid masonry de mockups del producto
+- Navbar minimalista con blur al hacer scroll
+- Secciones que "respiran" — padding generoso
+- Un solo color acento (#22c55e) usado con precisión, no en exceso
+
+## Componente WebGL disponible
+src/components/ui/web-gl-shader.tsx — shader animado para fondo del Hero
+Dependencias instaladas: three, @radix-ui/react-slot, class-variance-authority
+
+## Regla de animaciones scroll
+Usar Framer Motion whileInView con viewport={{ once: true, margin: "-100px" }}
+Variantes: { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }
+Duration: 0.6s, ease: [0.16, 1, 0.3, 1]
+Stagger entre elementos: 0.08s — nunca más de 0.15s

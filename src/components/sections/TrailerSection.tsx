@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { ScrollExpandMedia } from "@/components/ui/scroll-expansion-hero";
-import { WebGlShader } from "@/components/ui/web-gl-shader";
 
 const SCENES = [
   { duration: 3800, kicker: "El problema", title: "El comercio venezolano opera a ciegas.", body: "Sin control de inventario. BCV manual. Fiados sin registro. Productos vencidos. Miles de bolívares perdidos cada mes." },
@@ -99,7 +98,6 @@ export default function TrailerSection() {
       <ScrollExpandMedia title="Demo" subtitle="Mira cómo funciona.">
         <div className="relative bg-vi-surface1 overflow-hidden" style={{ minHeight: 420 }}>
           <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />
-          <WebGlShader />
           <div className="scanline" />
 
           <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.03] z-0">

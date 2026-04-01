@@ -96,18 +96,18 @@ export default function GlobalSection() {
               markers={MARKERS}
               arcs={ARCS}
               markerColor={[0.2, 0.85, 0.4]}
-              baseColor={[0.05, 0.05, 0.05]}
+              baseColor={[0.25, 0.25, 0.25]}
               arcColor={[0.2, 0.85, 0.4]}
               glowColor={[0.15, 0.7, 0.3]}
               dark={1}
-              mapBrightness={6}
-              mapSamples={16000}
+              mapBrightness={10}
+              mapSamples={12000}
               markerSize={0.04}
               markerElevation={0.01}
               arcWidth={0.5}
-              arcHeight={0.25}
-              diffuse={1.2}
-              speed={0.004}
+              arcHeight={0.2}
+              diffuse={2.0}
+              speed={0.003}
               theta={0.25}
             />
           </motion.div>

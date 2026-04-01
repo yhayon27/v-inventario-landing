@@ -135,7 +135,7 @@ export function Globe({
       const width = canvas.offsetWidth
       if (width === 0 || globe) return
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const dpr = 1
 
       globe = createGlobe(canvas, {
         devicePixelRatio: dpr,

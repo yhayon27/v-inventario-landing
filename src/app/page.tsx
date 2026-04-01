@@ -4,7 +4,7 @@ import Hero from "@/components/sections/Hero";
 import dynamic from "next/dynamic";
 const GlobalSection = dynamic(
   () => import("@/components/sections/GlobalSection"),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="section-pad bg-vi-bg" /> }
 );
 import TrailerSection from "@/components/sections/TrailerSection";
 import ScenariosSection from "@/components/sections/ScenariosSection";

@@ -25,7 +25,7 @@ export default function SectionWithMockup({ title, description, children, revers
         >
           <motion.div className={`flex flex-col items-start gap-4 max-w-[540px] ${reverseLayout ? 'md:col-start-2' : ''}`} variants={itemVariants}>
             <h2 className="text-white text-3xl md:text-[40px] font-display font-bold leading-tight">{title}</h2>
-            <div className="text-[#555] text-sm md:text-[15px] leading-relaxed">{description}</div>
+            <div className="text-vi-body text-sm md:text-[15px] leading-relaxed">{description}</div>
           </motion.div>
           <motion.div className={`relative ${reverseLayout ? 'md:col-start-1' : ''}`} variants={itemVariants}>
             {children}

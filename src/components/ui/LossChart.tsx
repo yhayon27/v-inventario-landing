@@ -78,9 +78,9 @@ export default function LossChart() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="#111111" strokeDasharray="0" vertical={false}/>
-                <XAxis dataKey="m" tick={{ fontSize:10, fill:"#666", fontFamily:"monospace" }}
+                <XAxis dataKey="m" tick={{ fontSize:10, fill:"#888890", fontFamily:"monospace" }}
                   axisLine={false} tickLine={false}/>
-                <YAxis tick={{ fontSize:10, fill:"#666", fontFamily:"monospace" }}
+                <YAxis tick={{ fontSize:10, fill:"#888890", fontFamily:"monospace" }}
                   axisLine={false} tickLine={false} tickFormatter={v=>`${v}`} domain={[96,132]}/>
                 <Tooltip content={<Tip/>} cursor={{ stroke:"#1A1A1A", strokeWidth:1 }}/>
                 <Area type="monotone" dataKey="v" stroke="#06B6D4" strokeWidth={1.5}

@@ -29,12 +29,12 @@ export function CpuArchitecture() {
 
       {/* Connectors */}
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 110" fill="none">
-        <path d="M10 20 h80 q5 0 5 5 v30" stroke="#1c1c1f" strokeWidth="1" fill="none" />
-        <path d="M180 10 h-70 q-5 0-5 5 v40" stroke="#1c1c1f" strokeWidth="1" fill="none" />
-        <path d="M130 20 v22 q0 5-5 5 h-25" stroke="#1c1c1f" strokeWidth="1" fill="none" />
-        <path d="M170 80 v-22 q0-5-5-5 h-65" stroke="#1c1c1f" strokeWidth="1" fill="none" />
-        <path d="M95 95 v-46" stroke="#1c1c1f" strokeWidth="1" fill="none" />
-        <path d="M30 30 h25 q5 0 5 5 v7 q0 5 5 5 h35" stroke="#1c1c1f" strokeWidth="1" fill="none" />
+        <path d="M10 20 h80 q5 0 5 5 v30" stroke="#2e2e32" strokeWidth="1" fill="none" />
+        <path d="M180 10 h-70 q-5 0-5 5 v40" stroke="#2e2e32" strokeWidth="1" fill="none" />
+        <path d="M130 20 v22 q0 5-5 5 h-25" stroke="#2e2e32" strokeWidth="1" fill="none" />
+        <path d="M170 80 v-22 q0-5-5-5 h-65" stroke="#2e2e32" strokeWidth="1" fill="none" />
+        <path d="M95 95 v-46" stroke="#2e2e32" strokeWidth="1" fill="none" />
+        <path d="M30 30 h25 q5 0 5 5 v7 q0 5 5 5 h35" stroke="#2e2e32" strokeWidth="1" fill="none" />
       </svg>
 
       {/* Corner nodes */}

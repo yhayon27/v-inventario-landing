@@ -6,6 +6,7 @@ import {
   Layers, AlertTriangle, MessageCircle, Receipt, Truck, Shield, Eye,
 } from "lucide-react";
 import { RadialOrbitalTimeline, type TimelineItem } from "@/components/ui/radial-orbital-timeline";
+import { Badge } from "@/components/ui/badge";
 
 const E = [0.16, 1, 0.3, 1] as const;
 
@@ -45,7 +46,7 @@ export default function OrbitalModules() {
           transition={{ duration: 0.7, ease: E }}
           className="text-center mb-4"
         >
-          <p className="text-label text-vi-green mb-4">Ecosistema</p>
+          <Badge variant="secondary" className="mb-4">Ecosistema</Badge>
           <h2 className="text-display-sm text-white mb-3">12 módulos conectados.</h2>
           <p className="text-vi-sub text-sm max-w-md mx-auto">
             Haz clic en cualquier módulo para explorar cómo se integra con el resto.

@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const E = [0.16, 1, 0.3, 1] as const;
 
@@ -46,7 +48,7 @@ export default function Pricing() {
           transition={{ duration: 0.7, ease: E }}
           className="text-center mb-12"
         >
-          <p className="text-label text-vi-green mb-4">Precios</p>
+          <Badge variant="secondary" className="mb-4">Precios</Badge>
           <h2 className="text-display-sm text-white mb-8">Simple. Sin sorpresas.</h2>
 
           <div className="inline-flex items-center gap-1 bg-vi-surface1 border border-vi-border rounded-full p-1">
@@ -89,9 +91,11 @@ export default function Pricing() {
                 </AnimatePresence>
                 <span className="text-vi-body text-xs mb-1.5">/mes</span>
               </div>
-              <button className={`w-full py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                plan.destacado ? 'bg-vi-green text-black hover:bg-green-400' : 'border border-vi-border text-vi-body hover:text-white hover:border-vi-muted'
-              }`}>{plan.cta}</button>
+              {plan.destacado ? (
+                <Button className="w-full">{plan.cta}</Button>
+              ) : (
+                <Button variant="outline" className="w-full">{plan.cta}</Button>
+              )}
               <ul className="flex flex-col gap-2">
                 {plan.funciones.map((fn) => (
                   <li key={fn} className="flex items-start gap-2 text-xs text-vi-body">

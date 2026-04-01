@@ -4,10 +4,12 @@ import Hero from "@/components/sections/Hero";
 import PasSection from "@/components/sections/PasSection";
 import TrailerSection from "@/components/sections/TrailerSection";
 import ScenariosSection from "@/components/sections/ScenariosSection";
+import WhySection from "@/components/sections/WhySection";
 import ModulesSection from "@/components/sections/ModulesSection";
 import OrbitalModules from "@/components/sections/OrbitalModules";
-import FeaturesGrid from "@/components/sections/FeaturesGrid";
+import HowItWorksCarousel from "@/components/sections/HowItWorksCarousel";
 import Results from "@/components/sections/Results";
+import HighlightCards from "@/components/sections/HighlightCards";
 import MetricsSection from "@/components/sections/MetricsSection";
 import Pricing from "@/components/sections/Pricing";
 import FaqSection from "@/components/sections/FaqSection";
@@ -21,10 +23,12 @@ export default function Home() {
       <PasSection />
       <TrailerSection />
       <ScenariosSection />
+      <WhySection />
       <ModulesSection />
       <OrbitalModules />
-      <FeaturesGrid />
+      <HowItWorksCarousel />
       <Results />
+      <HighlightCards />
       <MetricsSection />
       <Pricing />
       <FaqSection />

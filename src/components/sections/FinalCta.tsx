@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
+import { BackgroundPaths } from "@/components/ui/background-paths";
+import { Button } from "@/components/ui/button";
+import { AnimatedGroup } from "@/components/ui/animated-group";
 
 const E = [0.16, 1, 0.3, 1] as const;
 
@@ -22,20 +25,15 @@ export default function FinalCta() {
   return (
     <section className="section-pad-lg relative bg-vi-bg overflow-hidden grain" id="contacto">
       <div className="hr-fade absolute top-0 inset-x-0" />
+      <BackgroundPaths />
       {/* Green glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-vi-green/5 blur-[150px] pointer-events-none" />
 
       <div className="max-w-lg mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: E }}
-          className="text-center mb-10"
-        >
+        <AnimatedGroup preset="blur-slide" stagger={0.1} className="text-center mb-10">
           <h2 className="text-display-sm text-white mb-3">Tu negocio merece datos reales.</h2>
           <p className="text-vi-sub text-sm">Sin tarjeta. Sin contrato. Activo en 5 minutos.</p>
-        </motion.div>
+        </AnimatedGroup>
 
         <AnimatePresence mode="wait">
           {!sent ? (
@@ -60,10 +58,9 @@ export default function FinalCta() {
                 <option value="">Tipo de negocio</option>
                 {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
-              <button type="submit" disabled={loading}
-                className="w-full py-3 rounded-xl bg-vi-green hover:bg-green-400 text-black font-semibold text-sm transition-colors cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60 animate-glow-pulse">
+              <Button type="submit" disabled={loading} size="lg" className="w-full animate-glow-pulse">
                 {loading ? <><Loader2 size={16} className="animate-spin" /> Enviando...</> : "Empezar gratis →"}
-              </button>
+              </Button>
             </motion.form>
           ) : (
             <motion.div

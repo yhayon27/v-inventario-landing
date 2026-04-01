@@ -1,6 +1,9 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import LossChart from "@/components/ui/LossChart";
+import { AnimatedGroup } from "@/components/ui/animated-group";
+import { Badge } from "@/components/ui/badge";
 
 const E = [0.16, 1, 0.3, 1] as const;
 
@@ -46,23 +49,43 @@ export default function MetricsSection() {
       </svg>
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {METRICS.map((m, i) => (
-            <motion.div
-              key={m.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: E }}
-            >
-              <p className="font-display font-extrabold text-5xl md:text-6xl text-vi-green tracking-tight leading-none mb-2">
-                <Counter target={m.value} suffix={m.suffix} />
-              </p>
-              <p className="text-white font-semibold text-sm mb-1">{m.label}</p>
-              <p className="text-vi-body text-xs">{m.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: E }}
+          className="text-center mb-12"
+        >
+          <Badge variant="secondary">Impacto real</Badge>
+          <h2 className="text-display-sm text-white mt-4">Números que importan.</h2>
+        </motion.div>
+
+        {/* Metrics grid */}
+        <AnimatedGroup preset="blur-slide" stagger={0.08}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {METRICS.map((m) => (
+              <div key={m.label}>
+                <p className="font-display font-extrabold text-5xl md:text-6xl text-vi-green tracking-tight leading-none mb-2">
+                  <Counter target={m.value} suffix={m.suffix} />
+                </p>
+                <p className="text-white font-semibold text-sm mb-1">{m.label}</p>
+                <p className="text-vi-body text-xs">{m.desc}</p>
+              </div>
+            ))}
+          </div>
+        </AnimatedGroup>
+
+        {/* Loss Chart */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: E }}
+          className="mt-12 max-w-3xl mx-auto"
+        >
+          <LossChart />
+        </motion.div>
       </div>
     </section>
   );

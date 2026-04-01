@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { ShaderLines } from "@/components/ui/shader-lines";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { ElegantShape } from "@/components/ui/shape-landing-hero";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
@@ -62,12 +63,12 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex items-center gap-4 flex-wrap justify-center mt-2">
-            <a href="#contacto" className="px-7 py-3 rounded-xl bg-vi-green hover:bg-green-400 text-black font-semibold text-sm transition-colors cursor-pointer">
-              Comenzar gratis
-            </a>
-            <a href="#demo" className="px-7 py-3 rounded-xl border border-vi-border hover:border-vi-muted text-vi-body hover:text-white font-semibold text-sm transition-colors cursor-pointer">
-              Ver demo →
-            </a>
+            <Button size="lg" asChild>
+              <a href="#contacto">Comenzar gratis</a>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href="#demo">Ver demo →</a>
+            </Button>
           </div>
         </AnimatedGroup>
 

@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { BentoGrid, BentoItem } from "@/components/ui/bento-grid";
+import { Badge } from "@/components/ui/badge";
 
 const E = [0.16, 1, 0.3, 1] as const;
 
@@ -35,7 +36,7 @@ export default function Results() {
           transition={{ duration: 0.7, ease: E }}
           className="text-center mb-16"
         >
-          <p className="text-label text-vi-green mb-4">22 funciones integradas</p>
+          <Badge variant="secondary" className="mb-4">22 funciones integradas</Badge>
           <h2 className="text-display-sm text-white">Todo lo que necesitas. Nada que te sobre.</h2>
         </motion.div>
 

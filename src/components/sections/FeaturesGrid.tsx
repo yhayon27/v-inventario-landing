@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { ClipboardList, Cpu, BarChart3 } from "lucide-react";
 import { CpuArchitecture } from "@/components/ui/cpu-architecture";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const E = [0.16, 1, 0.3, 1] as const;
 
@@ -42,7 +44,7 @@ export default function FeaturesGrid() {
           transition={{ duration: 0.7, ease: E }}
           className="text-center mb-20"
         >
-          <p className="text-label text-vi-green mb-4">Cómo funciona</p>
+          <Badge variant="secondary" className="mb-4">Cómo funciona</Badge>
           <h2 className="text-display-sm text-white">3 pasos. Cero fricción.</h2>
         </motion.div>
 
@@ -85,9 +87,11 @@ export default function FeaturesGrid() {
                     {step.visual === "cpu" ? (
                       <CpuArchitecture />
                     ) : (
-                      <div className="w-[160px] h-[100px] bg-vi-surface1 border border-vi-border rounded-xl flex items-center justify-center">
-                        <Icon size={32} className="text-vi-green/30" />
-                      </div>
+                      <Card className="w-[180px] bg-white/5 backdrop-blur-sm border-white/10">
+                        <CardContent className="flex items-center justify-center h-[100px]">
+                          <Icon size={36} className="text-vi-green/40" />
+                        </CardContent>
+                      </Card>
                     )}
                   </div>
                 </motion.div>

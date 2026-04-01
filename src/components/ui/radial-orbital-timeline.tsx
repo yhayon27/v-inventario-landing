@@ -52,7 +52,7 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
         <svg width="580" height="580" viewBox="-290 -290 580 580" className="overflow-visible">
           {/* Orbit rings */}
           {ORBITS.map((o) => (
-            <circle key={o.r} cx="0" cy="0" r={o.r} fill="none" stroke="#272729" strokeWidth="1" />
+            <circle key={o.r} cx="0" cy="0" r={o.r} fill="none" stroke="#2e2e32" strokeWidth="1" />
           ))}
 
           {/* Connection lines */}
@@ -85,8 +85,8 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
                   </circle>
                 )}
                 <circle r="20"
-                  fill={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.15)" : "#111113"}
-                  stroke={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.4)" : "#272729"}
+                  fill={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.15)" : "#161618"}
+                  stroke={isSel ? "#22c55e" : isRel ? "rgba(34,197,94,0.4)" : "#2e2e32"}
                   strokeWidth="1.5"
                   style={{ transition: "fill 0.2s, stroke 0.2s" }} />
                 <foreignObject x="-8" y="-8" width="16" height="16">
@@ -103,9 +103,9 @@ export function RadialOrbitalTimeline({ timelineData }: Props) {
           })}
 
           {/* Center orb — GREEN not purple */}
-          <circle cx="0" cy="0" r="26" fill="#111113" stroke="rgba(34,197,94,0.25)" strokeWidth="1.5" />
+          <circle cx="0" cy="0" r="26" fill="#161618" stroke="rgba(34,197,94,0.25)" strokeWidth="1.5" />
           <text x="0" y="-3" textAnchor="middle" fontSize="7" fill="#22c55e" fontFamily="Syne, system-ui" fontWeight="700">V·INV</text>
-          <text x="0" y="7" textAnchor="middle" fontSize="6" fill="#555" fontFamily="DM Sans, system-ui">IA</text>
+          <text x="0" y="7" textAnchor="middle" fontSize="6" fill="#888890" fontFamily="DM Sans, system-ui">IA</text>
         </svg>
 
         {/* Detail panel */}

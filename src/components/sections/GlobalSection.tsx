@@ -62,10 +62,10 @@ export default function GlobalSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: E }}
-            className="relative flex items-center justify-center"
+            className="relative w-full max-w-[500px] aspect-square mx-auto"
           >
             {/* Green glow behind globe */}
-            <div className="absolute inset-0 rounded-full bg-vi-green/10 blur-[80px] pointer-events-none" />
+            <div className="absolute inset-0 rounded-full bg-vi-green/10 blur-[80px] pointer-events-none z-0" />
 
             <Globe
               markers={[
@@ -76,14 +76,14 @@ export default function GlobalSection() {
                 { id: "bue", location: [-34.6037, -58.3816], label: "Buenos Aires" },
               ]}
               markerColor={[0.2, 0.85, 0.4]}
-              baseColor={[0.05, 0.05, 0.05]}
-              arcColor={[0.2, 0.85, 0.4]}
+              baseColor={[0.08, 0.08, 0.08]}
               glowColor={[0.2, 0.85, 0.4]}
               dark={1}
-              mapBrightness={3}
+              mapBrightness={6}
               speed={0.004}
-              markerSize={0.04}
-              className="w-full max-w-[500px]"
+              markerSize={0.05}
+              theta={0.3}
+              className="relative z-10 w-full"
             />
           </motion.div>
         </div>

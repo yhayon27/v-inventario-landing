@@ -152,3 +152,8 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* Framer Motion GPU hints */
+[style*="transform"] {
+  backface-visibility: hidden;
+}

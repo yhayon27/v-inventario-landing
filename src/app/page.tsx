@@ -1,7 +1,11 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import GlobalSection from "@/components/sections/GlobalSection";
+import dynamic from "next/dynamic";
+const GlobalSection = dynamic(
+  () => import("@/components/sections/GlobalSection"),
+  { ssr: false }
+);
 import TrailerSection from "@/components/sections/TrailerSection";
 import ScenariosSection from "@/components/sections/ScenariosSection";
 import WhySection from "@/components/sections/WhySection";

@@ -1,170 +1,266 @@
-"use client";
-import { useEffect, useRef } from "react";
-import createGlobe from "cobe";
-import { cn } from "@/lib/utils";
+"use client"
+
+import { useEffect, useRef, useCallback } from "react"
+import createGlobe from "cobe"
 
 interface Marker {
-  id: string;
-  location: [number, number];
-  label: string;
+  id: string
+  location: [number, number]
+  label: string
 }
 
 interface Arc {
-  id: string;
-  from: [number, number];
-  to: [number, number];
-  label?: string;
+  id: string
+  from: [number, number]
+  to: [number, number]
+  label?: string
 }
 
 interface GlobeProps {
-  markers?: Marker[];
-  arcs?: Arc[];
-  className?: string;
-  markerColor?: [number, number, number];
-  baseColor?: [number, number, number];
-  arcColor?: [number, number, number];
-  glowColor?: [number, number, number];
-  dark?: number;
-  mapBrightness?: number;
-  markerSize?: number;
-  speed?: number;
-  theta?: number;
-  arcWidth?: number;
-  arcHeight?: number;
+  markers?: Marker[]
+  arcs?: Arc[]
+  className?: string
+  markerColor?: [number, number, number]
+  baseColor?: [number, number, number]
+  arcColor?: [number, number, number]
+  glowColor?: [number, number, number]
+  dark?: number
+  mapBrightness?: number
+  markerSize?: number
+  markerElevation?: number
+  arcWidth?: number
+  arcHeight?: number
+  speed?: number
+  theta?: number
+  diffuse?: number
+  mapSamples?: number
 }
 
 export function Globe({
   markers = [],
   arcs = [],
-  className,
-  markerColor = [0.2, 0.85, 0.4],
-  baseColor = [0.08, 0.08, 0.08],
-  arcColor = [0.2, 0.85, 0.4],
-  glowColor = [0.2, 0.85, 0.4],
-  dark = 1,
-  mapBrightness = 7,
-  markerSize = 0.06,
-  speed = 0.004,
-  theta = 0.3,
-  arcWidth = 1.5,
-  arcHeight = 0.4,
+  className = "",
+  markerColor = [0.3, 0.45, 0.85],
+  baseColor = [1, 1, 1],
+  arcColor = [0.3, 0.45, 0.85],
+  glowColor = [0.94, 0.93, 0.91],
+  dark = 0,
+  mapBrightness = 10,
+  markerSize = 0.025,
+  markerElevation = 0.01,
+  arcWidth = 0.5,
+  arcHeight = 0.25,
+  speed = 0.003,
+  theta = 0.2,
+  diffuse = 1.5,
+  mapSamples = 16000,
 }: GlobeProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pointerInteracting = useRef<number | null>(null);
-  const dragDelta = useRef(0);
-  const phi = useRef(0);
-  const isVisible = useRef(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const pointerInteracting = useRef<{ x: number; y: number } | null>(null)
+  const lastPointer = useRef<{ x: number; y: number; t: number } | null>(null)
+  const dragOffset = useRef({ phi: 0, theta: 0 })
+  const velocity = useRef({ phi: 0, theta: 0 })
+  const phiOffsetRef = useRef(0)
+  const thetaOffsetRef = useRef(0)
+  const isPausedRef = useRef(false)
+  const isVisibleRef = useRef(false)
 
-  // Pause when off-screen
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { isVisible.current = entry.isIntersecting; },
-      { threshold: 0.1 }
-    );
-    observer.observe(canvas);
-    return () => observer.disconnect();
-  }, []);
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    pointerInteracting.current = { x: e.clientX, y: e.clientY }
+    if (canvasRef.current) canvasRef.current.style.cursor = "grabbing"
+    isPausedRef.current = true
+  }, [])
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let globe: any = null;
-    let raf: number;
-
-    const init = () => {
-      const width = canvas.offsetWidth;
-      if (width === 0) {
-        raf = requestAnimationFrame(init);
-        return;
+  const handlePointerMove = useCallback((e: PointerEvent) => {
+    if (pointerInteracting.current !== null) {
+      const deltaX = e.clientX - pointerInteracting.current.x
+      const deltaY = e.clientY - pointerInteracting.current.y
+      dragOffset.current = { phi: deltaX / 300, theta: deltaY / 1000 }
+      const now = Date.now()
+      if (lastPointer.current) {
+        const dt = Math.max(now - lastPointer.current.t, 1)
+        const maxVelocity = 0.15
+        velocity.current = {
+          phi: Math.max(-maxVelocity, Math.min(maxVelocity,
+            ((e.clientX - lastPointer.current.x) / dt) * 0.3)),
+          theta: Math.max(-maxVelocity, Math.min(maxVelocity,
+            ((e.clientY - lastPointer.current.y) / dt) * 0.08)),
+        }
       }
+      lastPointer.current = { x: e.clientX, y: e.clientY, t: now }
+    }
+  }, [])
+
+  const handlePointerUp = useCallback(() => {
+    if (pointerInteracting.current !== null) {
+      phiOffsetRef.current += dragOffset.current.phi
+      thetaOffsetRef.current += dragOffset.current.theta
+      dragOffset.current = { phi: 0, theta: 0 }
+      lastPointer.current = null
+    }
+    pointerInteracting.current = null
+    if (canvasRef.current) canvasRef.current.style.cursor = "grab"
+    isPausedRef.current = false
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener("pointermove", handlePointerMove, { passive: true })
+    window.addEventListener("pointerup", handlePointerUp, { passive: true })
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove)
+      window.removeEventListener("pointerup", handlePointerUp)
+    }
+  }, [handlePointerMove, handlePointerUp])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting },
+      { threshold: 0.1 }
+    )
+    observer.observe(canvas)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!canvasRef.current) return
+    const canvas = canvasRef.current
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let globe: any = null
+    let animationId: number
+    let phi = 0
+
+    function init() {
+      const width = canvas.offsetWidth
+      if (width === 0 || globe) return
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
       globe = createGlobe(canvas, {
-        devicePixelRatio: Math.min(window.devicePixelRatio, 2),
-        width: width * 2,
-        height: width * 2,
+        devicePixelRatio: dpr,
+        width,
+        height: width,
         phi: 0,
         theta,
         dark,
-        diffuse: 1.2,
-        mapSamples: 16000,
+        diffuse,
+        mapSamples,
         mapBrightness,
         baseColor,
         markerColor,
         glowColor,
+        markerElevation,
+        markers: markers.map((m) => ({
+          location: m.location,
+          size: markerSize,
+          id: m.id,
+        })),
+        arcs: arcs.map((a) => ({
+          from: a.from,
+          to: a.to,
+          id: a.id,
+        })),
         arcColor,
         arcWidth,
         arcHeight,
-        markers: markers.map((m) => ({ location: m.location, size: markerSize })),
-        arcs: arcs.map((a) => ({ from: a.from, to: a.to })),
-      } as Parameters<typeof createGlobe>[1]);
+        opacity: 0.7,
+      } as Parameters<typeof createGlobe>[1])
 
-      const animate = () => {
-        // Skip rendering when off-screen
-        if (!isVisible.current) {
-          raf = requestAnimationFrame(animate);
-          return;
+      function animate() {
+        if (!isVisibleRef.current) {
+          animationId = requestAnimationFrame(animate)
+          return
         }
 
-        if (pointerInteracting.current === null) {
-          phi.current += speed;
+        if (!isPausedRef.current) {
+          phi += speed
+          if (
+            Math.abs(velocity.current.phi) > 0.0001 ||
+            Math.abs(velocity.current.theta) > 0.0001
+          ) {
+            phiOffsetRef.current += velocity.current.phi
+            thetaOffsetRef.current += velocity.current.theta
+            velocity.current.phi *= 0.95
+            velocity.current.theta *= 0.95
+          }
+          const thetaMin = -0.4
+          const thetaMax = 0.4
+          if (thetaOffsetRef.current < thetaMin) {
+            thetaOffsetRef.current += (thetaMin - thetaOffsetRef.current) * 0.1
+          } else if (thetaOffsetRef.current > thetaMax) {
+            thetaOffsetRef.current += (thetaMax - thetaOffsetRef.current) * 0.1
+          }
         }
-        const w = canvas.offsetWidth;
-        globe?.update?.({
-          phi: phi.current + dragDelta.current / 200,
-          width: w * 2,
-          height: w * 2,
-        });
-        raf = requestAnimationFrame(animate);
-      };
 
-      raf = requestAnimationFrame(animate);
-      setTimeout(() => { canvas.style.opacity = "1"; }, 150);
-    };
+        globe!.update({
+          phi: phi + phiOffsetRef.current + dragOffset.current.phi,
+          theta: theta + thetaOffsetRef.current + dragOffset.current.theta,
+          dark,
+          mapBrightness,
+          markerColor,
+          baseColor,
+          arcColor,
+          markerElevation,
+          markers: markers.map((m) => ({
+            location: m.location,
+            size: markerSize,
+            id: m.id,
+          })),
+          arcs: arcs.map((a) => ({
+            from: a.from,
+            to: a.to,
+            id: a.id,
+          })),
+        })
+        animationId = requestAnimationFrame(animate)
+      }
 
-    raf = requestAnimationFrame(init);
+      animate()
+      setTimeout(() => canvas && (canvas.style.opacity = "1"))
+    }
 
-    const onResize = () => {
-      const w = canvas.offsetWidth;
-      globe?.update?.({ width: w * 2, height: w * 2 });
-    };
-    window.addEventListener("resize", onResize);
+    if (canvas.offsetWidth > 0) {
+      init()
+    } else {
+      const ro = new ResizeObserver((entries) => {
+        if (entries[0]?.contentRect.width > 0) {
+          ro.disconnect()
+          init()
+        }
+      })
+      ro.observe(canvas)
+    }
 
     return () => {
-      cancelAnimationFrame(raf);
-      globe?.destroy();
-      window.removeEventListener("resize", onResize);
-    };
-  }, [markers, arcs, baseColor, markerColor, arcColor, glowColor, dark, mapBrightness, markerSize, speed, theta, arcWidth, arcHeight]);
+      if (animationId) cancelAnimationFrame(animationId)
+      if (globe) globe.destroy()
+    }
+  }, [
+    markers, arcs, markerColor, baseColor, arcColor, glowColor,
+    dark, mapBrightness, markerSize, markerElevation,
+    arcWidth, arcHeight, speed, theta, diffuse, mapSamples,
+  ])
 
   return (
-    <div className={cn("relative aspect-square", className)}>
+    <div
+      className={`relative aspect-square select-none ${className}`}
+      style={{ contain: "layout paint size" }}
+    >
       <canvas
         ref={canvasRef}
-        onPointerDown={(e) => {
-          pointerInteracting.current = e.clientX - dragDelta.current;
-          if (canvasRef.current) canvasRef.current.style.cursor = "grabbing";
+        onPointerDown={handlePointerDown}
+        style={{
+          width: "100%",
+          height: "100%",
+          cursor: "grab",
+          opacity: 0,
+          transition: "opacity 1.2s ease",
+          borderRadius: "50%",
+          touchAction: "none",
+          willChange: "transform",
         }}
-        onPointerUp={() => {
-          pointerInteracting.current = null;
-          if (canvasRef.current) canvasRef.current.style.cursor = "grab";
-        }}
-        onPointerOut={() => { pointerInteracting.current = null; }}
-        onMouseMove={(e) => {
-          if (pointerInteracting.current !== null) {
-            dragDelta.current = e.clientX - pointerInteracting.current;
-          }
-        }}
-        onTouchMove={(e) => {
-          if (pointerInteracting.current !== null && e.touches[0]) {
-            dragDelta.current = e.touches[0].clientX - pointerInteracting.current;
-          }
-        }}
-        style={{ width: "100%", height: "100%", cursor: "grab", opacity: 0, transition: "opacity 1s ease" }}
       />
     </div>
-  );
+  )
 }

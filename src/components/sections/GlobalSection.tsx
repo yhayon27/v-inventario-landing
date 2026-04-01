@@ -14,30 +14,28 @@ const BULLETS = [
 ];
 
 const MARKERS = [
-  { id: "ccs",  location: [10.4806, -66.9036] as [number, number], label: "Caracas" },
-  { id: "mara", location: [10.6666, -71.6333] as [number, number], label: "Maracaibo" },
-  { id: "val",  location: [10.1667, -67.9833] as [number, number], label: "Valencia" },
-  { id: "bog",  location: [4.7110,  -74.0721] as [number, number], label: "Bogotá" },
-  { id: "mia",  location: [25.7617, -80.1918] as [number, number], label: "Miami" },
-  { id: "cdmx", location: [19.4326, -99.1332] as [number, number], label: "México DF" },
-  { id: "lima", location: [-12.0464,-77.0428] as [number, number], label: "Lima" },
-  { id: "bue",  location: [-34.6037,-58.3816] as [number, number], label: "Bs. Aires" },
-  { id: "sao",  location: [-23.5505,-46.6333] as [number, number], label: "São Paulo" },
-  { id: "stg",  location: [-33.4489,-70.6693] as [number, number], label: "Santiago" },
-  { id: "pan",  location: [8.9936,  -79.5197] as [number, number], label: "Panamá" },
-  { id: "mad",  location: [40.4168,  -3.7038] as [number, number], label: "Madrid" },
+  { id: "ccs",  location: [10.4806,  -66.9036] as [number, number], label: "Caracas" },
+  { id: "mara", location: [10.6666,  -71.6333] as [number, number], label: "Maracaibo" },
+  { id: "val",  location: [10.1667,  -67.9833] as [number, number], label: "Valencia" },
+  { id: "bog",  location: [4.7110,   -74.0721] as [number, number], label: "Bogotá" },
+  { id: "mia",  location: [25.7617,  -80.1918] as [number, number], label: "Miami" },
+  { id: "cdmx", location: [19.4326,  -99.1332] as [number, number], label: "México" },
+  { id: "lima", location: [-12.0464, -77.0428] as [number, number], label: "Lima" },
+  { id: "bue",  location: [-34.6037, -58.3816] as [number, number], label: "Bs.Aires" },
+  { id: "sao",  location: [-23.5505, -46.6333] as [number, number], label: "São Paulo" },
+  { id: "pan",  location: [8.9936,   -79.5197] as [number, number], label: "Panamá" },
+  { id: "mad",  location: [40.4168,   -3.7038] as [number, number], label: "Madrid" },
 ];
 
 const ARCS = [
-  { id: "ccs-mia",  from: [10.4806,-66.9036] as [number, number], to: [25.7617,-80.1918] as [number, number] },
-  { id: "ccs-bog",  from: [10.4806,-66.9036] as [number, number], to: [4.7110,-74.0721]  as [number, number] },
-  { id: "ccs-pan",  from: [10.4806,-66.9036] as [number, number], to: [8.9936,-79.5197]  as [number, number] },
-  { id: "ccs-lima", from: [10.4806,-66.9036] as [number, number], to: [-12.0464,-77.0428] as [number, number] },
-  { id: "ccs-bue",  from: [10.4806,-66.9036] as [number, number], to: [-34.6037,-58.3816] as [number, number] },
-  { id: "mia-cdmx", from: [25.7617,-80.1918] as [number, number], to: [19.4326,-99.1332] as [number, number] },
-  { id: "bog-lima",  from: [4.7110,-74.0721]  as [number, number], to: [-12.0464,-77.0428] as [number, number] },
-  { id: "bue-sao",  from: [-34.6037,-58.3816] as [number, number], to: [-23.5505,-46.6333] as [number, number] },
-  { id: "mia-mad",  from: [25.7617,-80.1918]  as [number, number], to: [40.4168,-3.7038]   as [number, number] },
+  { id: "ccs-mia",  from: [10.4806,-66.9036]  as [number,number], to: [25.7617,-80.1918]  as [number,number] },
+  { id: "ccs-bog",  from: [10.4806,-66.9036]  as [number,number], to: [4.7110,-74.0721]   as [number,number] },
+  { id: "ccs-pan",  from: [10.4806,-66.9036]  as [number,number], to: [8.9936,-79.5197]   as [number,number] },
+  { id: "ccs-lima", from: [10.4806,-66.9036]  as [number,number], to: [-12.0464,-77.0428] as [number,number] },
+  { id: "ccs-bue",  from: [10.4806,-66.9036]  as [number,number], to: [-34.6037,-58.3816] as [number,number] },
+  { id: "mia-cdmx", from: [25.7617,-80.1918]  as [number,number], to: [19.4326,-99.1332]  as [number,number] },
+  { id: "bue-sao",  from: [-34.6037,-58.3816] as [number,number], to: [-23.5505,-46.6333] as [number,number] },
+  { id: "mia-mad",  from: [25.7617,-80.1918]  as [number,number], to: [40.4168,-3.7038]   as [number,number] },
 ];
 
 export default function GlobalSection() {
@@ -94,20 +92,23 @@ export default function GlobalSection() {
             <div className="absolute inset-0 rounded-full bg-vi-green/10 blur-[80px] pointer-events-none z-0" />
 
             <Globe
+              className="w-full"
               markers={MARKERS}
               arcs={ARCS}
               markerColor={[0.2, 0.85, 0.4]}
+              baseColor={[0.05, 0.05, 0.05]}
               arcColor={[0.2, 0.85, 0.4]}
-              baseColor={[0.08, 0.08, 0.08]}
-              glowColor={[0.2, 0.85, 0.4]}
+              glowColor={[0.15, 0.7, 0.3]}
               dark={1}
-              mapBrightness={7}
+              mapBrightness={6}
+              mapSamples={16000}
+              markerSize={0.04}
+              markerElevation={0.01}
+              arcWidth={0.5}
+              arcHeight={0.25}
+              diffuse={1.2}
               speed={0.004}
-              markerSize={0.06}
-              theta={0.3}
-              arcWidth={1.5}
-              arcHeight={0.4}
-              className="relative z-10 w-full"
+              theta={0.25}
             />
           </motion.div>
         </div>

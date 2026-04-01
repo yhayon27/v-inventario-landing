@@ -1,7 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import PasSection from "@/components/sections/PasSection";
+import GlobalSection from "@/components/sections/GlobalSection";
 import TrailerSection from "@/components/sections/TrailerSection";
 import ScenariosSection from "@/components/sections/ScenariosSection";
 import WhySection from "@/components/sections/WhySection";
@@ -20,7 +20,7 @@ export default function Home() {
     <main className="bg-vi-bg min-h-screen">
       <Navbar />
       <Hero />
-      <PasSection />
+      <GlobalSection />
       <TrailerSection />
       <ScenariosSection />
       <WhySection />

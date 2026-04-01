@@ -1,10 +1,40 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Package, Users, ShoppingCart, TrendingUp, Bell, BarChart3 } from "lucide-react";
+import MegaMenu from "@/components/ui/mega-menu";
+import type { MegaMenuItem } from "@/components/ui/mega-menu";
+import { Button } from "@/components/ui/button";
 
-const NAV = [
-  { label: "Inicio", href: "#inicio" },
+const NAV_ITEMS: MegaMenuItem[] = [
+  {
+    id: 1,
+    label: "Módulos",
+    subMenus: [
+      {
+        title: "Gestión",
+        items: [
+          { label: "Inventario IA", description: "Registra con foto, controla por voz", icon: Package },
+          { label: "Fiados", description: "Créditos y cobros automáticos", icon: Users },
+          { label: "Ventas", description: "Registra cada venta por WhatsApp", icon: ShoppingCart },
+        ],
+      },
+      {
+        title: "Inteligencia",
+        items: [
+          { label: "Tasa BCV", description: "Actualización automática diaria", icon: TrendingUp },
+          { label: "Alertas IA", description: "Avisa antes de que el stock falle", icon: Bell },
+          { label: "Reportes", description: "Resumen diario a las 9pm sin pedirlo", icon: BarChart3 },
+        ],
+      },
+    ],
+  },
+  { id: 2, label: "Demo", link: "#demo" },
+  { id: 3, label: "Precios", link: "#precios" },
+  { id: 4, label: "Contacto", link: "#contacto" },
+];
+
+const MOBILE_LINKS = [
   { label: "Módulos", href: "#modulos" },
   { label: "Demo", href: "#demo" },
   { label: "Precios", href: "#precios" },
@@ -31,6 +61,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+        {/* Logo */}
         <a href="#inicio" className="flex items-center gap-1.5 cursor-pointer">
           <span className="font-display text-sm font-bold text-white">
             <span className="text-vi-green">V·</span>Inventario
@@ -38,38 +69,38 @@ export default function Navbar() {
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {NAV.map((l) => (
-            <a key={l.label} href={l.href} className="text-[13px] text-vi-body hover:text-white transition-colors cursor-pointer">
-              {l.label}
-            </a>
-          ))}
+        {/* Desktop — MegaMenu */}
+        <div className="hidden md:block">
+          <MegaMenu items={NAV_ITEMS} />
         </div>
 
+        {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
           <a href="#precios" className="text-[13px] text-vi-body hover:text-white transition-colors cursor-pointer">
             Iniciar sesión
           </a>
-          <a href="#contacto" className="px-4 py-1.5 rounded-lg bg-vi-green text-black text-[13px] font-semibold hover:bg-green-400 transition-colors cursor-pointer">
-            Empieza gratis
-          </a>
+          <Button size="sm" asChild>
+            <a href="#contacto">Empieza gratis</a>
+          </Button>
         </div>
 
+        {/* Mobile hamburger */}
         <button className="md:hidden text-vi-body hover:text-white transition-colors cursor-pointer" onClick={() => setOpen(!open)} aria-label="Menú">
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
+      {/* Mobile menu */}
       {open && (
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="md:hidden glass border-t border-vi-border px-6 py-4 flex flex-col gap-4">
-          {NAV.map((l) => (
+          {MOBILE_LINKS.map((l) => (
             <a key={l.label} href={l.href} className="text-sm text-vi-body hover:text-white transition-colors cursor-pointer" onClick={() => setOpen(false)}>
               {l.label}
             </a>
           ))}
-          <a href="#contacto" className="px-4 py-2 rounded-lg bg-vi-green text-black text-sm font-semibold text-center cursor-pointer" onClick={() => setOpen(false)}>
-            Empieza gratis
-          </a>
+          <Button size="sm" asChild className="text-center">
+            <a href="#contacto" onClick={() => setOpen(false)}>Empieza gratis</a>
+          </Button>
         </motion.div>
       )}
     </motion.nav>

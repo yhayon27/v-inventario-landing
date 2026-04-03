@@ -8,6 +8,7 @@ export default function GeminiSection() {
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
+    layoutEffect: false,
   });
 
   const p1 = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);

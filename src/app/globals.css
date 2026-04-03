@@ -157,3 +157,12 @@ body {
 [style*="transform"] {
   backface-visibility: hidden;
 }
+
+/* Containment for heavy sections */
+#inicio, #global, #transform, #trailer {
+  contain: layout paint;
+}
+
+#inicio canvas, #global canvas, #trailer canvas {
+  will-change: transform;
+}

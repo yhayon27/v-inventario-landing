@@ -76,7 +76,7 @@ export default function Hero() {
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
           animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", type: "tween" }}
         >
           <ChevronDown size={20} className="text-vi-body" />
         </motion.div>

@@ -9,6 +9,7 @@ export default function TransformSection() {
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
+    layoutEffect: false,
   });
 
   const photoOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);

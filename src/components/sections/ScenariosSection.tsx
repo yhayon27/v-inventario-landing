@@ -110,7 +110,7 @@ export default function ScenariosSection() {
             {/* Technique 4 — Float animation wrapper */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", type: "tween" }}
             >
               {/* Technique 1 — 3D parallax container */}
               <motion.div
@@ -171,7 +171,7 @@ export default function ScenariosSection() {
                           key={i}
                           className="w-1.5 h-1.5 rounded-full bg-vi-body"
                           animate={{ y: [0, -4, 0] }}
-                          transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.15 }}
+                          transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.15, type: "tween", ease: "easeInOut" }}
                         />
                       ))}
                     </motion.div>

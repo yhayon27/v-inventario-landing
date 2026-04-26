@@ -3,12 +3,31 @@ import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "V·Inventario IA — Gestión Inteligente para tu Negocio",
-  description: "El sistema de gestión por WhatsApp diseñado para la realidad venezolana. Tasa BCV automática, IGTF, fiados, FEFO y tu negocio disponible 24/7.",
-  keywords: ["inventario", "venezuela", "BCV", "IGTF", "fiados", "whatsapp", "gestión", "negocio", "IA"],
+  metadataBase: new URL("https://v-inventario-landing.vercel.app"),
+  title: "V·Inventario IA — Gestión de inventarios para pequeños negocios",
+  description:
+    "Sistema SaaS multi-tenant de gestión de inventarios para pequeños y micro negocios. Bot de WhatsApp, dual-currency USD/VES, FEFO, control de fiado y multi-sucursal.",
+  keywords: [
+    "inventario",
+    "WhatsApp Business",
+    "Venezuela",
+    "pequeños negocios",
+    "SaaS",
+    "gestión",
+    "FEFO",
+    "fiado",
+    "USD VES",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "V·Inventario IA — Gestión Inteligente para tu Negocio",
-    description: "El sistema que pone a los comerciantes venezolanos en control total.",
+    title: "V·Inventario IA — Gestión de inventarios para pequeños negocios",
+    description:
+      "Sistema SaaS multi-tenant de gestión de inventarios para pequeños y micro negocios. Bot de WhatsApp, dual-currency USD/VES, FEFO, control de fiado y multi-sucursal.",
+    url: "https://v-inventario-landing.vercel.app",
+    siteName: "V·Inventario IA",
+    locale: "es_VE",
     type: "website",
   },
 };

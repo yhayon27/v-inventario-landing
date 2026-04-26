@@ -53,7 +53,7 @@ export default function Hero() {
 
           {/* Headline */}
           <h1 className="text-display text-white">
-            Tu negocio responde.<br />Tú decides.
+            V·Inventario IA<br />Tu negocio responde. Tú decides.
           </h1>
 
           {/* Subheadline */}
